@@ -469,7 +469,7 @@ function arlo_tm_animate_text(){
 	var animateSpan			= jQuery('.arlo_tm_animation_text_word');
 	
 		animateSpan.typed({
-			strings: ["Data Engineer", "Programmer", "Tech-Enthusiasts", "Dreamer", "Poet", "Part Time Writer""],
+			strings: ["Data Engineer", "Programmer", "Problem - Solver", "Tech-Enthusiasts", "Dreamer", "Poet/Writer"],
 			loop: true,
 			startDelay: 1e3,
 			backDelay: 2e3
