@@ -140,6 +140,23 @@
     .m-lbl { font-size: .8rem; color: #8a91a8; margin-top: 6px; line-height: 1.4; }
 
 
+
+    /* ─── CODE SAMPLES ─── */
+    .code-wrap { border: 1px solid #30363d; border-radius: 10px; overflow: hidden; }
+    .code-tabs-wrap { background: #161b22; padding: 0 8px; border-bottom: 1px solid #30363d; }
+    .code-tabs { display: flex; gap: 0; flex-wrap: wrap; }
+    .code-tab { font-size:.8rem; font-weight:600; padding:10px 16px; cursor:pointer; color:#8b949e; border:none; border-bottom:2px solid transparent; background:none; font-family:var(--sans); transition:all .15s; margin-bottom:-1px; }
+    .code-tab.active { color:#58a6ff; border-bottom-color:#58a6ff; }
+    .code-tab:hover { color:#e6edf3; }
+    .code-panels { background:#0d1117; }
+    .code-panel { display:none; }
+    .code-panel.active { display:block; }
+    .code-header { display:flex; align-items:center; justify-content:space-between; padding:10px 20px; background:#161b22; border-bottom:1px solid #30363d; }
+    .code-filename { font-size:.76rem; color:#8b949e; font-family:'Courier New',monospace; }
+    .code-badge { font-size:.68rem; font-weight:600; background:#1f6feb22; color:#58a6ff; border:1px solid #1f6feb55; padding:2px 8px; border-radius:4px; }
+    pre.cb { margin:0; padding:20px; overflow-x:auto; font-size:.78rem; line-height:1.75; font-family:'Courier New',Consolas,monospace; color:#e6edf3; }
+    .kw{color:#ff7b72} .fn{color:#d2a8ff} .st{color:#a5d6ff} .cm{color:#8b949e;font-style:italic} .nm{color:#79c0ff} .dc{color:#ffa657}
+
     /* ─── PROJECTS ─── */
     .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
     .proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: box-shadow .2s, border-color .2s; display: flex; flex-direction: column; }
@@ -218,7 +235,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li><li><a href="#services">Freelance</a></li>
+      <li><a href="#code">Code</a></li><li><a href="#projects">Projects</a></li><li><a href="#services">Freelance</a></li>
       <li><a href="#contact" class="nav-hire">Hire Me</a></li>
     </ul>
   </div>
@@ -522,6 +539,272 @@
 </section>
 
 
+
+<!-- CODE SAMPLES -->
+<section id="code">
+  <div class="wrap">
+    <p class="eyebrow">Code Samples</p>
+    <h2 class="sec-title">Real Python, PySpark &amp; SQL<br>from production systems</h2>
+    <p class="sec-sub">Actual patterns from Kenko AI and Eli Lilly — not toy examples. Full repo on GitHub.</p>
+    <div class="code-wrap">
+      <div class="code-tabs-wrap">
+        <div class="code-tabs">
+          <button class="code-tab active" onclick="showTab('iceberg',this)">Iceberg Pipeline</button>
+          <button class="code-tab" onclick="showTab('dq',this)">DQ Engine</button>
+          <button class="code-tab" onclick="showTab('cdc',this)">DMS CDC Stream</button>
+          <button class="code-tab" onclick="showTab('cube',this)">Cube LDM</button>
+          <button class="code-tab" onclick="showTab('gold',this)">Gold Revenue Mart</button>
+        </div>
+      </div>
+      <div class="code-panels">
+        <div class="code-panel active" id="panel-iceberg">
+          <div class="code-header"><span class="code-filename">processing/silver/bronze_to_iceberg.py</span><span class="code-badge">Python · PySpark</span></div>
+          <pre class="cb"><span class="cm"># Bronze &rarr; Silver: Apache Iceberg write with schema evolution</span>
+<span class="cm"># Pattern used at Kenko AI &mdash; 500+ tenant lakehouse on AWS S3 Tables</span>
+
+<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> SparkSession
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
+
+<span class="kw">def</span> <span class="fn">bronze_to_silver_iceberg</span>(
+    spark: SparkSession,
+    bronze_path: <span class="nm">str</span>,
+    silver_table: <span class="nm">str</span>,
+    tenant_id: <span class="nm">str</span>,
+    batch_date: <span class="nm">str</span>,
+) -&gt; <span class="nm">None</span>:
+
+    df = (
+        spark.read.format(<span class="st">"delta"</span>)
+        .load(bronze_path)
+        .filter(
+            (F.col(<span class="st">"_batch_date"</span>) == batch_date) &amp;
+            (F.col(<span class="st">"tenant_id"</span>) == tenant_id)
+        )
+    )
+
+    <span class="cm"># Deduplicate: keep latest record per event_id</span>
+    w = Window.partitionBy(<span class="st">"event_id"</span>).orderBy(F.col(<span class="st">"kafka_ts"</span>).desc())
+    deduped = (
+        df.withColumn(<span class="st">"_rn"</span>, F.row_number().over(w))
+        .filter(F.col(<span class="st">"_rn"</span>) == <span class="dc">1</span>)
+        .drop(<span class="st">"_rn"</span>)
+    )
+
+    silver_df = deduped.select(
+        <span class="st">"event_id"</span>, <span class="st">"tenant_id"</span>, <span class="st">"user_id"</span>, <span class="st">"event_type"</span>, <span class="st">"amount"</span>,
+        F.current_timestamp().alias(<span class="st">"_silver_ts"</span>),
+        F.lit(batch_date).alias(<span class="st">"_batch_date"</span>),
+    )
+
+    <span class="cm"># Write to Iceberg with schema evolution + tenant partition</span>
+    (
+        silver_df.writeTo(silver_table)
+        .option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>)
+        .partitionedBy(<span class="st">"tenant_id"</span>, <span class="st">"_batch_date"</span>)
+        .createOrReplace()
+    )</pre>
+        </div>
+        <div class="code-panel" id="panel-dq">
+          <div class="code-header"><span class="code-filename">dq/quality_engine.py</span><span class="code-badge">Python · PySpark</span></div>
+          <pre class="cb"><span class="cm"># Data Quality Engine &mdash; 9-check framework</span>
+<span class="cm"># Cut data incidents 60% at Kenko AI (82% &rarr; 97% confidence)</span>
+
+<span class="kw">from</span> <span class="nm">dataclasses</span> <span class="kw">import</span> dataclass
+<span class="kw">from</span> <span class="nm">enum</span> <span class="kw">import</span> Enum
+<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> DataFrame
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+
+<span class="kw">class</span> <span class="fn">RuleType</span>(str, Enum):
+    NOT_NULL        = <span class="st">"not_null"</span>
+    UNIQUE          = <span class="st">"unique"</span>
+    RANGE           = <span class="st">"range"</span>
+    REGEX           = <span class="st">"regex"</span>
+    ACCEPTED_VALUES = <span class="st">"accepted_values"</span>
+    REFERENTIAL     = <span class="st">"referential_integrity"</span>
+    FRESHNESS       = <span class="st">"freshness"</span>
+    SCHEMA          = <span class="st">"schema_check"</span>
+    SEMANTIC        = <span class="st">"semantic"</span>
+
+@dataclass
+<span class="kw">class</span> <span class="fn">DQResult</span>:
+    rule_name: <span class="nm">str</span>
+    passed: <span class="nm">bool</span>
+    total_rows: <span class="nm">int</span>
+    failed_rows: <span class="nm">int</span>
+    failure_rate: <span class="nm">float</span>
+
+<span class="kw">class</span> <span class="fn">QualityEngine</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, rules, alert_threshold=<span class="dc">0.05</span>):
+        self.rules = rules
+        self.alert_threshold = alert_threshold
+
+    <span class="kw">def</span> <span class="fn">run</span>(self, df: DataFrame, quarantine_path=<span class="nm">None</span>):
+        total = df.count()
+        bad_mask = F.lit(<span class="nm">False</span>)
+        results = []
+
+        <span class="kw">for</span> rule <span class="kw">in</span> self.rules:
+            fail_cond = self._build_condition(rule)
+            failed = df.filter(fail_cond).count()
+            rate = failed / total <span class="kw">if</span> total <span class="kw">else</span> <span class="dc">0.0</span>
+            results.append(DQResult(
+                rule_name=rule.name,
+                passed=rate &lt;= self.alert_threshold,
+                total_rows=total, failed_rows=failed,
+                failure_rate=round(rate, <span class="dc">4</span>),
+            ))
+            bad_mask = bad_mask | fail_cond
+
+        clean_df = df.filter(~bad_mask)
+        <span class="kw">if</span> quarantine_path:
+            df.filter(bad_mask).write.format(<span class="st">"delta"</span>).mode(<span class="st">"append"</span>).save(quarantine_path)
+        <span class="kw">return</span> clean_df, results</pre>
+        </div>
+        <div class="code-panel" id="panel-cdc">
+          <div class="code-header"><span class="code-filename">ingestion/streaming/dms_cdc_to_bronze.py</span><span class="code-badge">Python · Structured Streaming</span></div>
+          <pre class="cb"><span class="cm"># AWS DMS CDC &rarr; Bronze Iceberg</span>
+<span class="cm"># Captures INSERT/UPDATE/DELETE from RDS via DMS S3 endpoint</span>
+
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.types</span> <span class="kw">import</span> StructType, StringType, TimestampType
+
+CDC_SCHEMA = (
+    StructType()
+    .add(<span class="st">"Op"</span>,         StringType())   <span class="cm"># I / U / D</span>
+    .add(<span class="st">"tenant_id"</span>,  StringType())
+    .add(<span class="st">"member_id"</span>,  StringType())
+    .add(<span class="st">"status"</span>,     StringType())
+    .add(<span class="st">"updated_at"</span>, TimestampType())
+)
+
+<span class="kw">def</span> <span class="fn">run_cdc_stream</span>(spark, s3_cdc_path: <span class="nm">str</span>, bronze_table: <span class="nm">str</span>):
+    raw = (
+        spark.readStream.format(<span class="st">"csv"</span>)
+        .schema(CDC_SCHEMA)
+        .option(<span class="st">"header"</span>, <span class="st">"true"</span>)
+        .load(s3_cdc_path)
+    )
+
+    upserts = raw.filter(F.col(<span class="st">"Op"</span>).isin([<span class="st">"I"</span>, <span class="st">"U"</span>]))
+
+    bronze = upserts.select(
+        <span class="st">"tenant_id"</span>, <span class="st">"member_id"</span>, <span class="st">"status"</span>,
+        F.col(<span class="st">"updated_at"</span>).alias(<span class="st">"source_ts"</span>),
+        F.current_timestamp().alias(<span class="st">"ingest_ts"</span>),
+        F.to_date(<span class="st">"updated_at"</span>).alias(<span class="st">"_date"</span>),
+    )
+
+    <span class="kw">def</span> <span class="fn">write_batch</span>(batch_df, batch_id):
+        batch_df.writeTo(bronze_table).option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>).append()
+
+    (bronze.writeStream
+     .foreachBatch(write_batch)
+     .option(<span class="st">"checkpointLocation"</span>, <span class="st">f"s3://checkpoints/{bronze_table}"</span>)
+     .trigger(processingTime=<span class="st">"60 seconds"</span>)
+     .start().awaitTermination())</pre>
+        </div>
+        <div class="code-panel" id="panel-cube">
+          <div class="code-header"><span class="code-filename">semantic/memberships.js</span><span class="code-badge">Cube Cloud LDM · SQL</span></div>
+          <pre class="cb"><span class="cm">// Cube Cloud LDM &mdash; Memberships cube with multi-tenant RLS</span>
+<span class="cm">// 58 KPIs across Finance, Memberships, Classes, Marketing</span>
+<span class="cm">// JWT context variable enforces tenant isolation at query time</span>
+
+cube(<span class="st">`Memberships`</span>, {
+  sql: <span class="st">`
+    SELECT * FROM gold.memberships_daily
+    WHERE tenant_id = '{ COMPILE_CONTEXT.securityContext.tenant_id }'
+  `</span>,
+
+  measures: {
+    total_members: { type: <span class="st">`count`</span>, sql: <span class="st">`member_id`</span> },
+
+    active_members: {
+      type: <span class="st">`count`</span>, sql: <span class="st">`member_id`</span>,
+      filters: [{ sql: <span class="st">`{CUBE}.status = 'active'`</span> }],
+    },
+
+    churn_rate: {
+      type: <span class="st">`number`</span>,
+      sql: <span class="st">`ROUND(
+        COUNT(CASE WHEN status='churned' THEN 1 END) * 100.0
+        / NULLIF(COUNT(member_id), 0), 2)`</span>,
+    },
+
+    mrr: { type: <span class="st">`sum`</span>, sql: <span class="st">`monthly_amount`</span>, format: <span class="st">`currency`</span> },
+  },
+
+  dimensions: {
+    tenant_id:  { sql: <span class="st">`tenant_id`</span>,  type: <span class="st">`string`</span> },
+    status:     { sql: <span class="st">`status`</span>,     type: <span class="st">`string`</span> },
+    plan_type:  { sql: <span class="st">`plan_type`</span>,  type: <span class="st">`string`</span> },
+    start_date: { sql: <span class="st">`start_date`</span>, type: <span class="st">`time`</span>   },
+  },
+
+  pre_aggregations: {
+    daily_by_tenant: {
+      measures:       [total_members, active_members, mrr],
+      dimensions:     [tenant_id, status],
+      time_dimension: start_date,
+      granularity:    <span class="st">`day`</span>,
+    },
+  },
+});</pre>
+        </div>
+        <div class="code-panel" id="panel-gold">
+          <div class="code-header"><span class="code-filename">processing/gold/revenue_mart.py</span><span class="code-badge">Python · PySpark · SQL</span></div>
+          <pre class="cb"><span class="cm"># Gold layer: Revenue mart &mdash; MoM growth per tenant</span>
+<span class="cm"># Replaced GoodData as BI source of truth &mdash; cut licensing 35%</span>
+
+<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> SparkSession
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
+<span class="kw">from</span> <span class="nm">delta.tables</span> <span class="kw">import</span> DeltaTable
+
+<span class="kw">def</span> <span class="fn">build_revenue_mart</span>(spark, silver_path, gold_path, batch_date):
+    silver = (
+        spark.read.format(<span class="st">"delta"</span>).load(silver_path)
+        .filter(F.col(<span class="st">"_batch_date"</span>) == batch_date)
+    )
+
+    w = Window.partitionBy(<span class="st">"tenant_id"</span>).orderBy(<span class="st">"month"</span>)
+
+    revenue = (
+        silver
+        .groupBy(
+            <span class="st">"tenant_id"</span>, <span class="st">"studio_id"</span>,
+            F.date_trunc(<span class="st">"month"</span>, <span class="st">"payment_date"</span>).alias(<span class="st">"month"</span>)
+        )
+        .agg(
+            F.sum(<span class="st">"amount"</span>).alias(<span class="st">"total_revenue"</span>),
+            F.countDistinct(<span class="st">"member_id"</span>).alias(<span class="st">"paying_members"</span>),
+            F.avg(<span class="st">"amount"</span>).alias(<span class="st">"avg_transaction"</span>),
+        )
+        .withColumn(<span class="st">"prev_revenue"</span>, F.lag(<span class="st">"total_revenue"</span>).over(w))
+        .withColumn(<span class="st">"mom_growth_pct"</span>, F.round(
+            (F.col(<span class="st">"total_revenue"</span>) - F.col(<span class="st">"prev_revenue"</span>))
+            / F.nullif(F.col(<span class="st">"prev_revenue"</span>), F.lit(<span class="dc">0</span>)) * <span class="dc">100</span>, <span class="dc">2</span>
+        ))
+        .withColumn(<span class="st">"_gold_ts"</span>, F.current_timestamp())
+    )
+
+    <span class="cm"># Idempotent upsert into Gold Delta</span>
+    <span class="kw">if</span> DeltaTable.isDeltaTable(spark, gold_path):
+        DeltaTable.forPath(spark, gold_path).alias(<span class="st">"t"</span>).merge(
+            revenue.alias(<span class="st">"s"</span>),
+            <span class="st">"t.tenant_id=s.tenant_id AND t.studio_id=s.studio_id AND t.month=s.month"</span>
+        ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()
+    <span class="kw">else</span>:
+        revenue.write.format(<span class="st">"delta"</span>).partitionBy(<span class="st">"tenant_id"</span>).save(gold_path)</pre>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;text-align:right">
+      <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.82rem;padding:8px 16px;">View full Astra repo on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects" class="alt">
   <div class="wrap">
@@ -725,5 +1008,14 @@
   </div>
 </footer>
 
+
+<script>
+function showTab(name, el) {
+  document.querySelectorAll('.code-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.code-tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('panel-'+name).classList.add('active');
+  el.classList.add('active');
+}
+</script>
 </body>
 </html>
