@@ -1,472 +1,668 @@
-
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Amit Kumar Sahu — Senior Data Engineer & Freelancer. 9+ years building data lakes, lakehouse platforms, and analytics layers across pharma and SaaS." />
+  <title>Amit Kumar Sahu | Senior Data Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0c0e14;
+      --ink2: #3e4352;
+      --ink3: #6b7080;
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --border: #e1e4ec;
+      --accent: #1a56db;
+      --accent-bg: #eef3ff;
+      --accent-dark: #1440b0;
+      --green: #0d7c66;
+      --green-bg: #e6f7f4;
+      --sans: 'Space Grotesk', system-ui, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --r: 8px;
+      --max: 1060px;
+      --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.04);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.65; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { display: block; max-width: 100%; }
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-w {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { font-weight: 700; font-size: .95rem; color: var(--ink); letter-spacing: -.01em; }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 6px; list-style: none; }
+    .nav-links a {
+      font-size: .82rem; font-weight: 500; color: var(--ink2);
+      padding: 6px 10px; border-radius: 6px; transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--accent-bg); color: var(--accent); text-decoration: none; }
+    .nav-cta {
+      background: var(--accent); color: #fff !important;
+      padding: 7px 16px !important; border-radius: 6px !important;
+      transition: background .15s !important;
+    }
+    .nav-cta:hover { background: var(--accent-dark) !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px 0; border-radius: 2px; }
 
-<meta name="description" content="Name of your web site">
-<meta name="author" content="Marketify">
+    /* ── HERO ── */
+    .hero {
+      max-width: var(--max); margin: 0 auto;
+      padding: 72px 24px 64px;
+      display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: start;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--green-bg); color: var(--green);
+      font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+      padding: 5px 14px; border-radius: 99px; margin-bottom: 22px;
+    }
+    .hero-badge::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      line-height: 1.1; color: var(--ink);
+      margin-bottom: 18px; letter-spacing: -.02em;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-lead { font-size: 1.05rem; color: var(--ink2); max-width: 54ch; margin-bottom: 10px; line-height: 1.75; }
+    .hero-sub { font-size: .9rem; color: var(--ink3); max-width: 52ch; margin-bottom: 34px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: .875rem; font-weight: 600; padding: 11px 22px; border-radius: var(--r); cursor: pointer; border: none; transition: all .15s; text-decoration: none !important; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-ghost { background: var(--surface); color: var(--ink); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .htag { font-size: .78rem; font-weight: 500; background: var(--surface); border: 1px solid var(--border); color: var(--ink2); padding: 4px 11px; border-radius: 99px; }
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    /* Hero right card */
+    .hero-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; box-shadow: var(--shadow);
+    }
+    .hc-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); margin-bottom: 18px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+    .stat { background: var(--bg); border-radius: var(--r); padding: 14px 16px; }
+    .stat-n { font-family: var(--serif); font-size: 1.8rem; color: var(--ink); line-height: 1; }
+    .stat-l { font-size: .75rem; color: var(--ink3); margin-top: 3px; }
+    .hc-divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+    .hc-avail { display: flex; align-items: center; gap: 10px; font-size: .85rem; color: var(--ink2); font-weight: 500; }
+    .dot-green { width: 8px; height: 8px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+    .hc-services { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+    .hc-service { display: flex; align-items: center; gap: 9px; font-size: .82rem; color: var(--ink2); }
+    .hc-service::before { content: '✓'; color: var(--green); font-weight: 700; font-size: .85rem; }
 
-<title>Amit | Home</title>
+    /* ── SECTION SHELL ── */
+    section { padding: 72px 24px; }
+    section:nth-child(even) { background: var(--surface); }
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    .sec-head { margin-bottom: 44px; }
+    .sec-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .sec-title { font-family: var(--serif); font-size: clamp(1.6rem, 2.8vw, 2.2rem); color: var(--ink); margin-bottom: 10px; }
+    .sec-sub { font-size: .95rem; color: var(--ink3); max-width: 58ch; }
 
-<!-- STYLES -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:200i,300,300i,400,400i,500,500i,600,700,700i,800&display=swap" rel="stylesheet">
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 22px; }
+    section:nth-child(even) .skill-card { background: var(--bg); }
+    .sc-title { font-weight: 600; font-size: .88rem; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .sc-icon { font-size: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: .73rem; font-weight: 500; padding: 3px 9px; border-radius: 4px; }
+    .tag-blue { background: var(--accent-bg); color: #1a3fa8; }
+    .tag-gray { background: var(--bg); color: var(--ink2); border: 1px solid var(--border); }
+    .tag-green { background: var(--green-bg); color: #0a5c4e; }
 
+    /* ── EXPERIENCE ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+    .tl { margin-bottom: 36px; position: relative; }
+    .tl-dot { position: absolute; left: -25px; top: 5px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+    .tl-dot.edu { border-color: var(--ink3); }
+    .tl-period { font-size: .75rem; font-weight: 600; color: var(--accent); letter-spacing: .03em; margin-bottom: 3px; }
+    .tl-dot.edu ~ .tl-body .tl-period { color: var(--ink3); }
+    .tl-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 1px; }
+    .tl-org { font-size: .85rem; color: var(--ink3); margin-bottom: 10px; }
+    .tl-list { padding-left: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .tl-list li { font-size: .88rem; color: var(--ink2); line-height: 1.6; }
+    .tl-list li strong { color: var(--ink); font-weight: 600; }
 
-<link rel="stylesheet" type="text/css" href="css/plugins.css" />
-<link rel="stylesheet" type="text/css" href="css/stylem.css" />
-<!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
-<!-- /STYLES -->
+    /* ── SERVICES / FREELANCE ── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .svc-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 26px 24px;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .svc-card:hover { box-shadow: var(--shadow); border-color: var(--accent); }
+    section:nth-child(even) .svc-card { background: var(--bg); }
+    section:nth-child(even) .svc-card:hover { background: var(--surface); }
+    .svc-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .svc-title { font-weight: 700; font-size: .95rem; color: var(--ink); margin-bottom: 8px; }
+    .svc-desc { font-size: .85rem; color: var(--ink2); line-height: 1.65; margin-bottom: 14px; }
+    .svc-stack { display: flex; flex-wrap: wrap; gap: 5px; }
 
+    /* ── METRICS STRIP ── */
+    .metrics { background: var(--ink); padding: 48px 24px; }
+    .metrics-w { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .metric { text-align: center; }
+    .metric-n { font-family: var(--serif); font-size: 2.4rem; color: #fff; }
+    .metric-l { font-size: .82rem; color: #9aa0b0; margin-top: 4px; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .contact-info-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .ci { display: flex; align-items: flex-start; gap: 13px; }
+    .ci-icon { width: 36px; height: 36px; background: var(--accent-bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ci-icon svg { color: var(--accent); }
+    .ci-label { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3); margin-bottom: 2px; }
+    .ci-val { font-size: .9rem; color: var(--ink2); }
+    .ci-val a { color: var(--ink2); }
+    .ci-val a:hover { color: var(--accent); }
+    .cform { display: flex; flex-direction: column; gap: 16px; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fgroup { display: flex; flex-direction: column; gap: 5px; }
+    .fgroup label { font-size: .78rem; font-weight: 600; color: var(--ink); }
+    .fgroup input, .fgroup textarea, .fgroup select {
+      font-family: var(--sans); font-size: .88rem; padding: 10px 13px;
+      border: 1.5px solid var(--border); border-radius: var(--r);
+      background: var(--bg); color: var(--ink);
+      outline: none; transition: border-color .15s; resize: vertical;
+    }
+    .fgroup input:focus, .fgroup textarea:focus, .fgroup select:focus { border-color: var(--accent); }
+    .fnote { font-size: .75rem; color: var(--ink3); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 32px 24px; }
+    .footer-w { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-weight: 700; color: #fff; font-size: .9rem; }
+    .footer-brand span { color: #6b9fff; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: .82rem; color: #9aa0b0; transition: color .15s; }
+    .footer-links a:hover { color: #fff; text-decoration: none; }
+    .footer-copy { font-size: .78rem; color: #6b7284; width: 100%; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .hero { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 36px; }
+      .hero-card { display: none; }
+      .metrics-w { grid-template-columns: 1fr 1fr; }
+      .contact-grid, .frow { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .footer-w { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-badge::before { animation: none; } }
+  </style>
 </head>
+<body>
 
-<body class="dark">
-	
-	<!-- PRELOADER -->
-	<div class="arlo_tm_preloader">
-		<div class="spinner_wrap">
-			<div class="spinner"></div>
-		</div>
-	</div>
-	<!-- /PRELOADER -->
+<!-- NAV -->
+<nav>
+  <div class="nav-w">
+    <span class="nav-brand">Amit<span>.</span>dev</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#freelance">Freelance</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-	
-<!-- WRAPPER ALL -->
-<div class="arlo_tm_all_wrap">
-	<div class="wrapper_inner">
-		<div class="arlo_tm_popup_news scrollable">
-			<a class="closer" href="#">Close</a>
-			<div class="container">
-				<div class="news_inner"></div>					
-			</div>
-		</div>
-		
-		<!-- Topbar -->
-		<div class="arlo_tm_topbar">
-			<div class="topbar_inner">
-				<div class="container">
-					<div class="topbar_in">
-						<div class="logo">
-							<a href="#"><img src="img/logo/mobile.png" alt="" /></a>
-						</div>
-						<div class="trigger">
-							<a href="#">
-								<span class="menu">Menu</span>
-								<span class="close">Close</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="dropdown">
-				<div class="container">
-					<div class="dropdown_inner">
-						<ul>
-							<li><a href="#home">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#skills">Skills</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Topbar -->
-		
-		<!-- LEFTPART -->
-		<div class="arlo_tm_leftpart">
-			<div class="inner">
-				<div class="logo">
-					<div class="arlo_tm_logo_author">
-						<div class="image">
-							<div class="main" data-img-url="img/about/3.jpg"></div>
-						</div>
-						<h3 class="title">Amit Kumar <span class="first">Sahu</span></h3>
-						<p>I'm a <span class="arlo_tm_animation_text_word"></span></p>
-					</div>
-				</div>
-				<div class="menu scrollable">
-					<ul>
-						<li><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#skills">Skills</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-				</div>
-				<div class="bottom">
-					<div class="social">
-						<ul>
-							<li><a href="#"><i class="xcon-facebook"></i></a></li>
-							<li><a href="#"><i class="xcon-twitter"></i></a></li>
-							<li><a href="#"><i class="xcon-linkedin"></i></a></li>
-							<li><a href="#"><i class="xcon-instagram"></i></a></li>
-							<li><a href="#"><i class="xcon-behance"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /LEFTPART -->
-		
-		<!-- RIGHTPART -->
-		<div class="arlo_tm_rightpart">
-			<div class="rightpart_inner">
-				
-				<!-- HERO -->
-				<div class="arlo_tm_section" id="home">
-					<div class="arlo_tm_hero_header">
-						<div class="hero_image jarallax" data-img-url="img/slider/7.jpg" data-speed="0"></div>
-						<div class="overlay"></div>
-						<div class="container">
-							<div class="arlo_tm_extra_hero_content">
-								<h3 class="title">Amit Kumar <span>Sahu</span></h3>
-								<p class="text">I am Amit Kumar Sahu. And programmer based in Bengaluru, India since 2015. I enjoy every step of the design process, from discussion and collaboration.</p>
-								<div class="buttons_extra">
-									<div class="button_one">
-										<a href="#"><span>Download CV</span></a>
-									</div>
-								</div>
-							</div>
-							<div class="arlo_tm_arrow_wrap extra bounce anchor">
-								<a href="#about"><i class="xcon-angle-double-down"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /HERO -->
-				
-				<!-- ABOUT -->
-				<div class="arlo_tm_section" id="about">
-					<div class="arlo_tm_about_wrap_all">
-						<div class="arlo_tm_about">
-							<div class="container">
-								<div class="arlo_title_holder">
-									<span>Main Info</span>
-									<h3>About Us</h3>
-								</div>
-								<div class="about_inner">
-									<div class="leftbox">
-										<div class="about_image_wrap parallax" data-relative-input="true">
-											<div class="image layer" data-depth="0.1">
-												<img src="img/about/550x650.jpg" alt="" />
-												<div class="inner" data-img-url="img/about/2.jpg"></div>
-											</div>
-											<div class="border layer" data-depth="0.2">
-												<img src="img/about/550x650.jpg" alt="" />
-												<div class="inner"></div>
-											</div>
-										</div>
-									</div>
-									<div class="rightbox">
-										<div class="about_title">
-											<h3>I'm Amit Kumar Sahu and <span class="arlo_tm_animation_text_word"></span></h3>
-										</div>
-										<div class="text">
-											<p>Hi! My name is <span>Amit Kumar Sahu</span>. I am a Data Engineer, and I'm very passionate and dedicated to my work. With 9 years experience as a professional Data Engineer, I have acquired the skills and knowledge necessary to make your project a success. I enjoy every step of the design process, from discussion and collaboration.</p>
-										</div>
-										<div class="about_short_contact_wrap">
-											<ul>
-												<li>
-													<img class="svg" src="img/svg/gift.svg" alt="" />
-													<span><label>Birthday:</label> 02.05.1993</span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/calendar-4.svg" alt="" />
-													<span><label>Age:</label> 27</span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/location-1.svg" alt="" />
-													<span><label>Location:</label> <a class="href_location" href="#">Bengaluru, Karnataka, India</a></span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/game-controller-2.svg" alt="" />
-													<span><label>Interests:</label> Competitive Programming, Reading Tech-Blogs, Playing Chess</span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/study-5.svg" alt="" />
-													<span><label>Study:</label> <a class="href_location" href="#"> Veer Surendra Sai University of Technology, Burla, India</a></span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/degree-1.svg" alt="" />
-													<span><label>Degree:</label> B.Tech in Computer Science & Engineering</span>
-												</li>	
-												<li>
-													<img class="svg" src="img/svg/message-3.svg" alt="" />
-													<span><label>Mail:</label> <a href="mailto:example@gmail.com">nikuamit.sahu256&#64;gmail.com</a></span>
-												</li>
-												<li>
-													<img class="svg" src="img/svg/call-2.svg" alt="" />
-													<span><label>Phone:</label> <a href="tel:+77 022 177 05 05">+91 9916681930</a></span>
-												</li>
-											</ul>
-										</div>
-										<div class="buttons">
-											<ul>
-												<li><a href="#"><span>Download CV</span></a></li>
-												<li><a href="#"><span>Send Message</span></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /ABOUT -->
-
-				<!-- SKILLS -->
-				<div class="arlo_tm_section" id="skills">
-					<div class="arlo_tm_services">
-						<div class="container">
-							<div class="arlo_title_holder">
-								<span>What I Do</span>
-								<h3>Services</h3>
-							</div>
-							<div class="service_inner">
-								<ul>
-									<li>
-										<div class="inner">
-											<img class="svg" src="img/svg/source.svg" alt="" />
-											<h3>Data Engineer</h3>
-											<p>Design, Develop, Test Data Pipelines using Python, Big Data & AWS concepts.</p>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<img class="svg" src="img/svg/line-chart.svg" alt="" />
-											<h3>Programmer</h3>
-											<p>Problem Solver with strong Data Structure & Algorithm fundamentals.</p>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<img class="svg" src="img/svg/light-bulb.svg" alt="" />
-											<h3>Mentor</h3>
-											<p>I mentor and guide like minded folks who are passionate to build something amazing over weekends to enhance productivity.</p>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<img class="svg" src="img/svg/adobe-illustrator.svg" alt="" />
-											<h3>Backend Developer</h3>
-											<p>Backend developer focuses on databases, scripting, and the architecture of the products.</p>
-										</div>
-									</li>
-									<li>
-										<div class="inner">
-											<img class="svg" src="img/svg/adobe-photoshop.svg" alt="" />
-											<h3>Poetry</h3>
-											<p>Poetry is mostly to spend time on creatibvity as hobbies during leisure...</p>
-										</div>
-									</li>
-								</ul>
-								<div class="arlo_tm_progress_wrap">
-									<div class="progress_wrap_inner">
-										<div class="left">
-											<div class="main_title">
-												<h3>In a <span>short time</span>, I have been able to achieve excellence in all areas of Programming and Data Engineering.</h3>
-											</div>
-											<div class="text">
-												<p>I provide cost-effective and high quality design to meet our Clients’ needs of timely delivery across the project life cycle.</p>
-											</div>
-										</div>
-										<div class="right">
-											<div class="arlo_progress">
-												<div class="progress_inner" data-value="95" data-color="#ff214f">
-													<span><span class="label">Data Engineering</span><span class="number">85%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-												<div class="progress_inner" data-value="80" data-color="#ff214f">
-													<span><span class="label">Backend Development</span><span class="number">80%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-												<div class="progress_inner" data-value="90" data-color="#ff214f">
-													<span><span class="label">Python</span><span class="number">85%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-												<div class="progress_inner" data-value="85" data-color="#ff214f">
-													<span><span class="label">Big Data</span><span class="number">80%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-												<div class="progress_inner" data-value="85" data-color="#ff214f">
-													<span><span class="label">AWS</span><span class="number">80%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-												<div class="progress_inner" data-value="85" data-color="#ff214f">
-													<span><span class="label">CI/CD</span><span class="number">75%</span></span>
-													<div class="background"><div class="bar"><div class="bar_in"></div></div></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /SKILLS -->
-				
-				<!-- TIMELINE -->
-				<div class="arlo_tm_section">
-					<div class="arlo_tm_timeline">
-						<div class="container">
-							<div class="arlo_title_holder">
-								<span>Working Process</span>
-								<h3>Experience</h3>
-							</div>
-							<div class="timeline_inner">
-								<div class="left">
-									<ul>
-										<li>
-											<div class="inner">
-												<img class="svg" src="img/svg/degree-5.svg" alt="" />
-												<p class="year">2011 - 2015</p>
-												<h3 class="title">Veer Surendra Sai University of Technology, Burla, India</h3>
-												<p class="text">- B.Tech in Computer Science & Engineering.</p>
-												<p class="text">Founder of Coding club - ENIGMA</p>
-												<p class="text">ACM-ICPC World Semifinalist in 2013 for Asia - IIT Kharagpur Regionals</p>
-											</div>
-										</li>
-										<li>
-											<div class="inner">
-												<img class="svg" src="img/svg/degree-5.svg" alt="" />
-												<p class="year">2003 - 2010</p>
-												<h3 class="title">Jawahar Navodaya Vidyalaya, Sarang, Dhenkanal</h3>
-												<p class="text">I have spent 7 years of my education in this school which provided quality education and enhanced me in various skills like education, curricular activitis, sports etc.</p>
-												<p class="text">I completed my AISSE in 2008 & AISSCE in 2010.</p>
-											</div>
-										</li>
-									</ul>
-								</div>
-								<div class="right">
-									<ul>
-										<li>
-											<div class="inner">
-												<img class="svg" src="img/svg/portfolio.svg" alt="" />
-												<p class="year">Aug' 2019 - June' 2019</p>
-												<h3 class="title">Data Engineer, AspireNXT Pvt. Ltd. Bengaluru, India</h3>
-												<p class="text">Worked in Financial, Industrial, Healthcare data of large scales in production, along with building POC/SOW,
-													documentations during the project life cycle and leading a team size of 5 freshers and 3 interns. My work mostly involved design, development of data pipelines.</p>
-											</div>
-										</li>
-										<li>
-											<div class="inner">
-												<img class="svg" src="img/svg/portfolio.svg" alt="" />
-												<p class="year">Jan' 2019 - July' 2019</p>
-												<h3 class="title">Senior Software Engineer, SpanIdea Systems Pvt. Ltd. Bengaluru, India</h3>
-												<p class="text">I was a part of IoT Team where I was handling the data processing modules measurely. I worked mostly in design, development, testing & deployment within my short tenure for internal & external projects.</p>
-											</div>
-										</li>
-										<li>
-											<div class="inner">
-												<img class="svg" src="img/svg/portfolio.svg" alt="" />
-												<p class="year">Aug' 2015 - Dec' 2018</p>
-												<h3 class="title">Senior Systems Engineer, Infosys Limited, Bengaluru, India</h3>
-												<p class="text">I worked for client DAIMLER AG in Database & Automation team, where I had automated major critical projects based on client’s requirements along with RCA, Data Migration, Development, Testing and Deployment.</p>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /TIMELINE -->
-
-				<!-- CONTACT -->
-				<div class="arlo_tm_section" id="contact">
-					<div class="arlo_tm_contact">
-						<div class="container">
-							<div class="arlo_title_holder">
-								<span>Get in Touch</span>
-								<h3>Contact</h3>
-							</div>
-							<div class="contact_inner">
-								<div class="short_list">
-									<ul>
-										<li>
-											<img class="svg" src="img/svg/location-1.svg" alt="" />
-											<h3>Location</h3>
-											<p>Bengaluru, Karnataka, India<</p>
-										</li>
-										<li>
-											<img class="svg" src="img/svg/message-3.svg" alt="" />
-											<h3>Email</h3>
-											<p>nikuamit.sahu256@gmail.com</p>
-										</li>
-										<li>
-											<img class="svg" src="img/svg/call-2.svg" alt="" />
-											<h3>Phone</h3>
-											<p>+91 9916681930</p>
-										</li>
-									</ul>
-								</div>
-								<div class="fields">
-									<form action="/" method="post" class="contact_form" id="contact_form">
-										<div class="returnmessage" data-success="Your message has been received, I will contact you soon."></div>
-										<div class="empty_notice"><span>Please Fill Required Fields</span></div>
-										<div class="first">
-											<ul>
-												<li>
-													<input id="name" type="text" placeholder="Name">
-												</li>
-												<li>
-													<input id="email" type="text" placeholder="Email">
-												</li>
-											</ul>
-										</div>
-										<div class="last">
-											<textarea id="message" placeholder="Message"></textarea>
-										</div>
-										<div class="arlo_tm_button">
-											<a id="send_message" href="#">Send Message</a>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /CONTACT -->
-				
-				
-				<!--
-				<div class="arlo_tm_footer">
-					<div class="container">
-						<div class="footer_inner">
-							<div class="copy">
-								<p>Copyright &copy; 2020 - Onwards. Template has been designed by <a href="https://themeforest.net/item/arlo-personal-portfolio-template/23175475" target="_blank">Marketify</a></p>
-							</div>
-							<div class="top">
-								<a class="arlo_tm_totop" href="#"></a> 
-							</div>
-						</div>
-					</div>
-				</div>
-				-->
-				-->
-			
-			</div>
-		</div>
-		<!-- /RIGHTPART -->
-	</div>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-badge">Open to work &amp; freelance projects</div>
+    <h1>Senior Data Engineer<br>building pipelines that <em>actually scale</em></h1>
+    <p class="hero-lead">
+      9+ years designing enterprise data lakes, lakehouse platforms, and semantic analytics layers —
+      from Eli Lilly's 200K+ clinical assets to Kenko AI's 500+ multi-tenant SaaS clients.
+    </p>
+    <p class="hero-sub">
+      Python · PySpark · SQL · AWS full-stack · Apache Iceberg · Cube Cloud LDM · Airflow
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Let's talk
+      </a>
+      <a href="#freelance" class="btn btn-ghost">View freelance services</a>
+      <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+    <div class="hero-tags">
+      <span class="htag">Data Lakes</span>
+      <span class="htag">Lakehouse Architecture</span>
+      <span class="htag">Real-time Pipelines</span>
+      <span class="htag">Multi-tenant Analytics</span>
+      <span class="htag">AWS Data Stack</span>
+      <span class="htag">Pharma &amp; SaaS</span>
+    </div>
+  </div>
+  <div class="hero-card">
+    <p class="hc-label">At a glance</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">9+</div><div class="stat-l">Years experience</div></div>
+      <div class="stat"><div class="stat-n">5</div><div class="stat-l">Industries served</div></div>
+      <div class="stat"><div class="stat-n">40%</div><div class="stat-l">Avg. pipeline speed gain</div></div>
+      <div class="stat"><div class="stat-n">60%</div><div class="stat-l">Data incident reduction</div></div>
+    </div>
+    <hr class="hc-divider" />
+    <div class="hc-avail"><span class="dot-green"></span> Available for freelance &amp; full-time roles</div>
+    <div class="hc-services">
+      <div class="hc-service">Data pipeline design &amp; architecture</div>
+      <div class="hc-service">AWS Data Lakehouse builds</div>
+      <div class="hc-service">PySpark / SQL performance tuning</div>
+      <div class="hc-service">Semantic layer &amp; BI analytics</div>
+      <div class="hc-service">Data quality framework setup</div>
+    </div>
+  </div>
 </div>
-<!-- / WRAPPER ALL -->
-	
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->	
-<script src="js/plugins.js"></script>
-<script src="js/init.js"></script>
-<!-- /SCRIPTS -->
+
+<!-- METRICS STRIP -->
+<div class="metrics">
+  <div class="metrics-w">
+    <div class="metric"><div class="metric-n">45%</div><div class="metric-l">Query latency cut at Kenko AI</div></div>
+    <div class="metric"><div class="metric-n">200K+</div><div class="metric-l">Clinical assets catalogued at Eli Lilly</div></div>
+    <div class="metric"><div class="metric-n">98%</div><div class="metric-l">SLA compliance achieved</div></div>
+    <div class="metric"><div class="metric-n">10 TB+</div><div class="metric-l">Data migrated at AspireNXT</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">About</p>
+      <h2 class="sec-title">Data engineer by trade,<br>problem solver by instinct</h2>
+      <p class="sec-sub">From ACM-ICPC semifinalist to building production data platforms that serve Fortune-500 pharma and fast-growing SaaS startups.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;">
+      <div style="font-size:.95rem; color:var(--ink2); line-height:1.8; display:flex; flex-direction:column; gap:14px;">
+        <p>I'm Amit Kumar Sahu, a Senior Data Engineer based in Bengaluru with 9+ years of hands-on experience building data infrastructure that delivers measurable results — 40–60% pipeline efficiency gains, dramatically reduced data incidents, and significant cost savings on BI tooling.</p>
+        <p>My career spans regulated pharma (Eli Lilly, clinical trial data at scale), high-growth SaaS (Kenko AI, multi-tenant lakehouse from scratch), IoT (SpanIdea, real-time sensor pipelines), consulting (AspireNXT, cross-domain data lakes), and enterprise automotive (Infosys × Daimler AG).</p>
+        <p>I'm currently open to Senior / Lead / Staff Data Engineer roles and freelance engagements — especially teams doing serious work on AWS, Iceberg, streaming, or semantic analytics layers.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Location</div>
+          <div style="font-size:.88rem; color:var(--ink2);">Bengaluru, Karnataka, India</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Open to</div>
+          <div style="font-size:.88rem; color:var(--ink2);">Remote · Hybrid · Freelance</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Degree</div>
+          <div style="font-size:.88rem; color:var(--ink2);">B.Tech CS&E — VSSUT, 2015</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Achievement</div>
+          <div style="font-size:.88rem; color:var(--ink2);">ACM-ICPC World Semifinalist 2013</div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Email</div>
+          <div style="font-size:.88rem;"><a href="mailto:nikuamit.sahu256@gmail.com" style="color:var(--accent);">nikuamit.sahu256@gmail.com</a></div>
+        </div>
+        <div style="background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px;">
+          <div style="font-size:.72rem; font-weight:700; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; margin-bottom:4px;">Interests</div>
+          <div style="font-size:.88rem; color:var(--ink2);">Chess · Competitive programming · Tech mentoring</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Technical Skills</p>
+      <h2 class="sec-title">Core stack, built in production</h2>
+      <p class="sec-sub">Every tool below has been used in live, production-grade data systems — not just side projects.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">🐍</span> Primary Languages</div>
+        <div class="tags">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-blue">PySpark</span>
+          <span class="tag tag-blue">SQL</span>
+          <span class="tag tag-gray">Bash</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">☁️</span> AWS Data Stack</div>
+        <div class="tags">
+          <span class="tag tag-blue">S3</span>
+          <span class="tag tag-blue">Glue</span>
+          <span class="tag tag-blue">DMS / CDC</span>
+          <span class="tag tag-blue">Kinesis</span>
+          <span class="tag tag-blue">Redshift</span>
+          <span class="tag tag-blue">Athena</span>
+          <span class="tag tag-blue">Lake Formation</span>
+          <span class="tag tag-gray">Lambda</span>
+          <span class="tag tag-gray">Step Functions</span>
+          <span class="tag tag-gray">Bedrock</span>
+          <span class="tag tag-gray">RDS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">🏗️</span> Data Engineering</div>
+        <div class="tags">
+          <span class="tag tag-green">Apache Iceberg</span>
+          <span class="tag tag-green">Delta Lake</span>
+          <span class="tag tag-green">Apache Airflow</span>
+          <span class="tag tag-green">DBT</span>
+          <span class="tag tag-gray">Databricks</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">📊</span> Semantic Layer &amp; BI</div>
+        <div class="tags">
+          <span class="tag tag-blue">Cube Cloud LDM</span>
+          <span class="tag tag-blue">Multi-tenant RLS</span>
+          <span class="tag tag-blue">JWT Auth</span>
+          <span class="tag tag-gray">GoodData</span>
+          <span class="tag tag-gray">QuickSight</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">🗄️</span> Databases</div>
+        <div class="tags">
+          <span class="tag tag-blue">PostgreSQL</span>
+          <span class="tag tag-blue">MySQL</span>
+          <span class="tag tag-gray">Oracle</span>
+          <span class="tag tag-gray">DynamoDB</span>
+          <span class="tag tag-gray">Azure IoT Hub</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sc-title"><span class="sc-icon">⚙️</span> DevOps &amp; AI Tools</div>
+        <div class="tags">
+          <span class="tag tag-green">Docker</span>
+          <span class="tag tag-green">Git / GitHub</span>
+          <span class="tag tag-green">DevSecOps</span>
+          <span class="tag tag-gray">Claude AI</span>
+          <span class="tag tag-gray">Cursor</span>
+          <span class="tag tag-gray">Windsurf</span>
+          <span class="tag tag-gray">GitHub Copilot</span>
+          <span class="tag tag-gray">Linux</span>
+          <span class="tag tag-gray">Jira</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Experience</p>
+      <h2 class="sec-title">9 years across pharma, SaaS,<br>IoT, and enterprise</h2>
+      <p class="sec-sub">A consistent track record of delivering production data platforms that cut costs, raise quality, and scale.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-period">Feb 2026 – Apr 2026</p>
+          <p class="tl-title">Senior Data Engineer</p>
+          <p class="tl-org">Kenko AI · SaaS Fitness Tech · Bengaluru</p>
+          <ul class="tl-list">
+            <li>Architected <strong>AWS Data Lakehouse</strong> for 500+ fitness studio clients via DMS CDC, S3 Bronze, Apache Iceberg Silver, and Athena Gold — cut query latency <strong>45%</strong>, raised SLA from 70% → 98%.</li>
+            <li>Designed <strong>Cube Cloud LDM</strong> with 18 cubes, 11 pre-aggregated views, 58 KPIs across Finance, Memberships, Classes, and Marketing with JWT-based multi-tenant RLS.</li>
+            <li>Built <strong>9-check Data Quality framework</strong> (null, PK, referential integrity, freshness, schema, semantic) with SNS alerting — cut data incidents 60%, raised confidence 82% → 97%.</li>
+            <li>Delivered 20-table Gold analytics layer replacing GoodData — cut BI licensing costs <strong>35%</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-period">Feb 2021 – May 2024</p>
+          <p class="tl-title">Engineer II – Software Configuration &amp; Development</p>
+          <p class="tl-org">Eli Lilly and Company · Pharma · Bengaluru</p>
+          <ul class="tl-list">
+            <li>Standardised <strong>20+ reusable Data Products</strong> and DWS APIs using PySpark and Airflow across 5+ teams — cut incident response time 40%.</li>
+            <li>Migrated <strong>5+ TB CTMS clinical data</strong> from IMPACT to Veeva Vault using PySpark, AWS, SQL, Airflow — accelerated onboarding 60% across 6+ clinical trials.</li>
+            <li>Engineered <strong>Axon Data Catalog</strong> for 200K+ clinical assets — improved discoverability 50%, validation efficiency 30%.</li>
+            <li>Won <strong>Lilly Global Ideas &amp; Innovation Award</strong> for LillyTV — R&amp;D communications platform scaled to 1,500+ employees.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-period">Aug 2019 – Jun 2020</p>
+          <p class="tl-title">Data Engineer</p>
+          <p class="tl-org">AspireNXT Pvt. Ltd. · Consulting · Bengaluru</p>
+          <ul class="tl-list">
+            <li>Led 5-member team delivering AWS Data Lake pipelines across finance, industrial IoT, and healthcare — improved delivery velocity 30%.</li>
+            <li>Deployed secure AWS Data Lake migrating <strong>10+ TB</strong>, reducing latency 40% and infrastructure costs 25%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-period">Jan 2019 – Jul 2019</p>
+          <p class="tl-title">Senior Software Engineer</p>
+          <p class="tl-org">SpanIdea Systems · IoT · Bengaluru</p>
+          <ul class="tl-list">
+            <li>Designed Span Park smart parking using Python, Raspberry Pi, PostgreSQL, Azure IoT Hub — reduced parking search time 50%.</li>
+            <li>Built real-time sensor data processor and MQTT dashboard API — improved responsiveness 40%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <p class="tl-period">Aug 2015 – Dec 2018</p>
+          <p class="tl-title">Senior Systems Engineer</p>
+          <p class="tl-org">Infosys Limited · Client: Daimler AG · Bengaluru</p>
+          <ul class="tl-list">
+            <li>Automated critical ETL pipelines with RCA and on-call support — reduced production downtime 20%.</li>
+            <li>Developed reusable ETL migration framework across 12+ projects — cut manual effort 30%, accelerated timelines 25%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-dot edu"></div>
+        <div class="tl-body">
+          <p class="tl-period">2011 – 2015</p>
+          <p class="tl-title">B.Tech — Computer Science &amp; Engineering</p>
+          <p class="tl-org">Veer Surendra Sai University of Technology (VSSUT), Burla, Odisha</p>
+          <ul class="tl-list">
+            <li>Founded ENIGMA — the university coding club.</li>
+            <li>ACM-ICPC World Semifinalist 2013, IIT Kharagpur Regionals (Asia region).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FREELANCE SERVICES -->
+<section id="freelance">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Freelance Services</p>
+      <h2 class="sec-title">What I can build for you</h2>
+      <p class="sec-sub">Hire me as a freelancer for time-boxed data engineering work — from a single pipeline to a full platform build.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🏗️</div>
+        <div class="svc-title">Data Lakehouse Architecture</div>
+        <div class="svc-desc">Design and build medallion (Bronze/Silver/Gold) data lakehouses on AWS using Apache Iceberg or Delta Lake. Includes ingestion, transformation, and queryable Gold layer.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">AWS S3</span><span class="tag tag-blue">Apache Iceberg</span><span class="tag tag-blue">Athena</span><span class="tag tag-gray">PySpark</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-title">Real-time Data Pipelines</div>
+        <div class="svc-desc">Build streaming ingestion pipelines using AWS Kinesis, DMS CDC, or Kafka. End-to-end from source to queryable sink with monitoring and alerting.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">Kinesis</span><span class="tag tag-blue">DMS CDC</span><span class="tag tag-gray">AWS Glue</span><span class="tag tag-gray">Lambda</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">📊</div>
+        <div class="svc-title">Semantic Layer &amp; Analytics</div>
+        <div class="svc-desc">Design and implement Cube Cloud LDM with cubes, pre-aggregations, KPIs, and multi-tenant row-level security. Replace expensive BI tools with governed self-serve analytics.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">Cube Cloud</span><span class="tag tag-gray">JWT RLS</span><span class="tag tag-gray">QuickSight</span><span class="tag tag-gray">SQL</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🧪</div>
+        <div class="svc-title">Data Quality Framework</div>
+        <div class="svc-desc">Implement automated DQ checks (null, PK, referential integrity, freshness, schema, semantic) with alerting via SNS. Proven to cut data incidents by 60%.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">Great Expectations</span><span class="tag tag-gray">SNS</span><span class="tag tag-gray">Python</span><span class="tag tag-gray">Airflow</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <div class="svc-title">ETL / ELT Pipeline Development</div>
+        <div class="svc-desc">Write and optimise PySpark, Python, and SQL pipelines — batch or micro-batch. Data migration, schema evolution, CDC patterns, and performance tuning.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">Python</span><span class="tag tag-blue">PySpark</span><span class="tag tag-blue">SQL</span><span class="tag tag-gray">AWS Glue</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🗺️</div>
+        <div class="svc-title">Data Platform Consulting</div>
+        <div class="svc-desc">Advisory engagements for early-stage or scaling teams: stack selection, cost optimisation, team structure, architecture review, and hands-on proof-of-concept builds.</div>
+        <div class="svc-stack">
+          <span class="tag tag-blue">Architecture Review</span><span class="tag tag-gray">Cost Optimisation</span><span class="tag tag-gray">AWS</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px; padding:24px; background:var(--accent-bg); border:1px solid #c7d8fa; border-radius:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div style="font-weight:700; font-size:.95rem; color:var(--ink); margin-bottom:4px;">Ready to start a project?</div>
+        <div style="font-size:.85rem; color:var(--ink2);">Typical engagement: 2–12 weeks · Remote-first · Available now</div>
+      </div>
+      <a href="#contact" class="btn btn-primary">Get a free scoping call</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Contact</p>
+      <h2 class="sec-title">Let's build something together</h2>
+      <p class="sec-sub">Whether it's a full-time role or a freelance project — reach out and I'll reply within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-list">
+          <div class="ci">
+            <div class="ci-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+            <div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:nikuamit.sahu256@gmail.com">nikuamit.sahu256@gmail.com</a></div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.8 19.8 0 0 1 1.61 3.42 2 2 0 0 1 3.59 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.35a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg></div>
+            <div><div class="ci-label">Phone</div><div class="ci-val">+91 99166 81930</div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">linkedin.com/in/aks1993</a></div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+            <div><div class="ci-label">GitHub</div><div class="ci-val"><a href="https://github.com/nikuamit" target="_blank" rel="noopener">github.com/nikuamit</a></div></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="ci-label">Location</div><div class="ci-val">Bengaluru, Karnataka, India</div></div>
+          </div>
+        </div>
+      </div>
+      <form class="cform" action="https://formspree.io/f/nikuamit.sahu256@gmail.com" method="POST">
+        <div class="frow">
+          <div class="fgroup">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="first_name" placeholder="Jane" required />
+          </div>
+          <div class="fgroup">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="last_name" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="fgroup">
+          <label for="femail">Email</label>
+          <input type="email" id="femail" name="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="fgroup">
+          <label for="ftype">Enquiry type</label>
+          <select id="ftype" name="enquiry_type">
+            <option value="">Select…</option>
+            <option value="fulltime">Full-time role</option>
+            <option value="freelance">Freelance project</option>
+            <option value="consulting">Consulting / advisory</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="fgroup">
+          <label for="fmsg">Message</label>
+          <textarea id="fmsg" name="message" rows="5" placeholder="Tell me about the role or project — stack, timeline, team size…" required></textarea>
+        </div>
+        <p class="fnote">Sent directly to my inbox. I respond within 24 hours on business days.</p>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-w">
+    <span class="footer-brand">Amit<span>.</span>dev</span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/nikuamit" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:nikuamit.sahu256@gmail.com">Email</a>
+    </div>
+    <p class="footer-copy">© 2025 Amit Kumar Sahu · Senior Data Engineer · Bengaluru, India</p>
+  </div>
+</footer>
 
 </body>
 </html>
