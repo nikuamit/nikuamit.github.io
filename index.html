@@ -139,6 +139,20 @@
     .m-num { font-family: var(--serif); font-size: 2.6rem; color: #fff; line-height: 1; }
     .m-lbl { font-size: .8rem; color: #8a91a8; margin-top: 6px; line-height: 1.4; }
 
+
+    /* ─── PROJECTS ─── */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px; transition: box-shadow .2s, border-color .2s; display: flex; flex-direction: column; }
+    .proj-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); border-color: #a5b4fc; }
+    section.alt .proj-card { background: var(--bg); }
+    .proj-lang { display: flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 600; color: var(--ink3); margin-bottom: 14px; }
+    .proj-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .proj-name { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 8px; }
+    .proj-desc { font-size: .85rem; color: var(--ink2); line-height: 1.65; margin-bottom: 14px; flex: 1; }
+    .proj-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; flex-wrap: wrap; gap: 8px; }
+    .proj-link { font-size: .8rem; font-weight: 600; color: var(--blue); }
+    .proj-link:hover { text-decoration: underline; }
+
     /* ─── SERVICES ─── */
     .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
     .svc-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 26px 24px; transition: box-shadow .2s, border-color .2s; }
@@ -204,7 +218,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#services">Freelance</a></li>
+      <li><a href="#projects">Projects</a></li><li><a href="#services">Freelance</a></li>
       <li><a href="#contact" class="nav-hire">Hire Me</a></li>
     </ul>
   </div>
@@ -500,6 +514,91 @@
           <ul class="tl-ul">
             <li>7 years of residential schooling — built strong foundations in academics, sports, and co-curricular activities.</li>
           </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Projects</p>
+    <h2 class="sec-title">Python & data engineering,<br>in production code</h2>
+    <p class="sec-sub">Open-source projects and portfolio work — real code, real patterns, runnable locally.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span> Python · PySpark · SQL</div>
+        <div class="proj-name">Astra Data Platform</div>
+        <div class="proj-desc">Production-grade Bronze → Silver → Gold medallion lakehouse. Kafka streaming ingestion, DQ engine with 9 rule types, SCD Type 2, config-driven pipelines, CI/CD with auto-release. Mirrors the architecture built at Kenko AI.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">Apache Iceberg</span><span class="t-blue">PySpark</span><span class="t-gray">Delta Lake</span><span class="t-gray">Kafka</span><span class="t-gray">GitHub Actions</span>
+          </div>
+          <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">View on GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span> Python · SQL · AWS</div>
+        <div class="proj-name">Data Quality Framework</div>
+        <div class="proj-desc">Standalone DQ engine built on PySpark — not_null, unique, range, regex, accepted_values checks with quarantine writes, SNS alerting, and HTML reports. Reduced data incidents 60% in production at Kenko AI.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">Python</span><span class="t-blue">Great Expectations</span><span class="t-gray">SNS</span><span class="t-gray">pytest</span>
+          </div>
+          <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">View on GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#e38c00"></span> SQL · Cube Cloud LDM</div>
+        <div class="proj-name">Multi-tenant Semantic Layer</div>
+        <div class="proj-desc">18 cubes, 58 KPIs, JWT-based row-level security for 500+ tenants built in Cube Cloud LDM. Replaced GoodData as the BI source of truth, cutting licensing costs 35% and query latency 45%.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">Cube Cloud</span><span class="t-blue">SQL</span><span class="t-gray">JWT RLS</span><span class="t-gray">Athena</span>
+          </div>
+          <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">Details on LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span> Python · PySpark · Airflow</div>
+        <div class="proj-name">Clinical Data Migration Pipeline</div>
+        <div class="proj-desc">Migrated 5+ TB of CTMS clinical trial data from IMPACT to Veeva Vault at Eli Lilly — PySpark transformation, Airflow orchestration, full GxP compliance. Accelerated onboarding 60% across 6+ clinical trials.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">PySpark</span><span class="t-blue">Airflow</span><span class="t-gray">Veeva Vault</span><span class="t-gray">AWS</span>
+          </div>
+          <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">Details on LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span> Python · PostgreSQL · MQTT</div>
+        <div class="proj-name">Span Park — IoT Smart Parking</div>
+        <div class="proj-desc">Real-time smart parking system using Python, Raspberry Pi, PostgreSQL, Azure IoT Hub, and MQTT. Sensor data processor with bidirectional device-cloud communication — reduced parking search time 50%.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">Python</span><span class="t-gray">MQTT</span><span class="t-gray">Azure IoT Hub</span><span class="t-gray">PostgreSQL</span>
+          </div>
+          <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">Details on LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span> Python · Axon · PySpark</div>
+        <div class="proj-name">Axon Data Catalog — 200K+ Assets</div>
+        <div class="proj-desc">Built the data catalog for Eli Lilly's Enterprise Data Backbone covering 200K+ clinical assets. Improved discoverability 50% and validation efficiency 30% across 5+ cross-functional teams.</div>
+        <div class="proj-footer">
+          <div class="tags">
+            <span class="t-blue">Axon Catalog</span><span class="t-blue">PySpark</span><span class="t-gray">AWS</span><span class="t-gray">SQL</span>
+          </div>
+          <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">Details on LinkedIn ↗</a>
         </div>
       </div>
 
