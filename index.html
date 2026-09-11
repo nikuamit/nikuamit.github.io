@@ -32,7 +32,7 @@
     /* ── NAV ── */
     nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
     .nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-family:var(--serif);font-size:1.15rem;font-weight:400;background:linear-gradient(135deg,#1d4ed8,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em;line-height:1}
+    .nav-logo{font-family:var(--serif);font-size:1.15rem;font-weight:400;background:linear-gradient(135deg,#1d4ed8,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em;line-height:1;cursor:pointer;position:relative;z-index:1;pointer-events:all}
     .nav-logo .cursor{display:inline-block;width:2px;height:1.1em;background:#7c3aed;margin-left:2px;animation:blink-cursor .8s infinite;vertical-align:middle}
     @keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
     .nav-menu{display:flex;gap:4px;list-style:none;align-items:center}
@@ -251,7 +251,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <span class="nav-logo">Amit Kumar Sahu<span class="cursor"></span></span>
+    <a href="#" class="nav-logo" style="text-decoration:none">Amit Kumar Sahu<span class="cursor"></span></a>
     <ul class="nav-menu">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
