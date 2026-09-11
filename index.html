@@ -28,7 +28,7 @@
     a:hover{text-decoration:underline}
 
     /* ── CANVAS ── */
-    #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.4}
+    #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.2}
 
     /* ── NAV ── */
     nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
@@ -59,7 +59,7 @@
 
     /* ── HERO ── */
     #hero{position:relative;z-index:1;background:linear-gradient(160deg,#060910 0%,#0f1628 45%,#0a1a12 100%);min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:62px}
-    .hero-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;pointer-events:none}
+    .hero-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.12;pointer-events:none}
     .hero-glow-1{width:600px;height:600px;background:#3b82f6;top:-100px;left:-100px}
     .hero-glow-2{width:500px;height:500px;background:#8b5cf6;bottom:-50px;right:0}
     .hero-glow-3{width:300px;height:300px;background:#10b981;top:50%;left:50%}
@@ -68,13 +68,13 @@
     .pulse{width:7px;height:7px;background:#34d399;border-radius:50%;animation:pulse-dot 2s infinite}
     @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
     .hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.8vw,3.8rem);line-height:1.08;color:#fff;margin-bottom:20px;letter-spacing:-.025em}
-    .hero h1 em{font-style:italic;background:linear-gradient(135deg,#60a5fa,#a78bfa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-lead{font-size:1.02rem;color:#cbd5e1;max-width:52ch;line-height:1.8;margin-bottom:10px}
-    .hero-stack{font-family:var(--mono);font-size:.78rem;color:#64748b;margin-bottom:30px;letter-spacing:.02em}
-    .hero-stack span{color:#93c5fd;font-weight:500}
+    .hero h1 em{font-style:italic;color:#a78bfa}
+    .hero-lead{font-size:1.02rem;color:#e2e8f0;max-width:52ch;line-height:1.8;margin-bottom:10px}
+    .hero-stack{font-family:var(--mono);font-size:.78rem;color:#94a3b8;margin-bottom:30px;letter-spacing:.02em}
+    .hero-stack span{color:#bfdbfe;font-weight:600}
     .hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
     .hero-pills{display:flex;flex-wrap:wrap;gap:7px}
-    .hpill{font-size:.72rem;font-weight:500;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#cbd5e1;padding:4px 12px;border-radius:99px;transition:all .2s;cursor:default}
+    .hpill{font-size:.72rem;font-weight:600;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#f1f5f9;padding:4px 12px;border-radius:99px;transition:all .2s;cursor:default}
     .hpill:hover{background:rgba(99,102,241,.2);border-color:rgba(99,102,241,.5);color:#c4b5fd}
 
     /* terminal */
@@ -742,7 +742,7 @@ cube(<span class="st">`Memberships`</span>, {
       for(let j=i+1;j<pts.length;j++){
         const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
         if(d<130){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle='#4f46e5';ctx.globalAlpha=(1-d/130)*.12;ctx.lineWidth=.6;ctx.stroke();}
+          ctx.strokeStyle='#4f46e5';ctx.globalAlpha=(1-d/130)*.07;ctx.lineWidth=.6;ctx.stroke();}
       }
     }
     ctx.globalAlpha=1;requestAnimationFrame(draw);
