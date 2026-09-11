@@ -32,8 +32,8 @@
     /* ── NAV ── */
     nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
     .nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-family:var(--sans);font-size:.92rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
-    .nav-logo .cursor{display:inline-block;width:2px;height:1em;background:var(--blue);margin-left:1px;animation:blink-cursor .8s infinite}
+    .nav-logo{font-family:var(--serif);font-size:1.15rem;font-weight:400;background:linear-gradient(135deg,#1d4ed8,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em;line-height:1}
+    .nav-logo .cursor{display:inline-block;width:2px;height:1.1em;background:#7c3aed;margin-left:2px;animation:blink-cursor .8s infinite;vertical-align:middle}
     @keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
     .nav-menu{display:flex;gap:4px;list-style:none;align-items:center}
     .nav-menu a{font-size:.82rem;font-weight:500;color:var(--ink2);padding:6px 12px;border-radius:6px;transition:background .15s,color .15s}
@@ -205,7 +205,7 @@
     /* ── FOOTER ── */
     footer{background:#0d1117;padding:36px 24px;position:relative;z-index:1}
     .foot-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-    .foot-brand{font-family:var(--sans);color:#fff;font-size:.9rem;font-weight:600}
+    .foot-brand{font-family:var(--serif);font-size:1.2rem;font-weight:400;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.01em}
     .foot-brand span{color:#58a6ff}
     .foot-links{display:flex;gap:20px}
     .foot-links a{font-size:.82rem;color:#6e7681;transition:color .15s}
