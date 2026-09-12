@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- v3.0 -->
+  <meta name="description" content="Amit Kumar Sahu — Senior Data Engineer. Python · PySpark · SQL · AWS · Apache Iceberg. Open to work & freelance."/>
+  <title>Amit Kumar Sahu | Senior Data Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --ink:#0d1117;--ink2:#3c4257;--ink3:#6b7280;
+      --bg:#f4f6fa;--white:#fff;--border:#e2e5ed;
+      --blue:#1d4ed8;--blue-lt:#eff2ff;--blue-dk:#1338b0;
+      --purple:#7c3aed;--purple-lt:#f3f0ff;
+      --teal:#0f766e;--teal-lt:#e6faf8;
+      --rose:#e11d48;
+      --sans:'Inter',system-ui,sans-serif;
+      --serif:'DM Serif Display',Georgia,serif;
+      --mono:'JetBrains Mono',monospace;
+      --r:8px;--max:1080px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px;overflow-x:hidden}
+    a{color:var(--blue);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ── CANVAS ── */
+    #bg-canvas{display:none}
+
+    /* ── NAV ── */
+    nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+    nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+    .nav-inner{max-width:var(--max);margin:0 auto;padding:0 24px;height:66px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:var(--serif);font-size:1.45rem;font-weight:400;background:linear-gradient(135deg,#1d4ed8 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em;cursor:pointer;text-decoration:none!important;position:relative;z-index:1}
+    .nav-logo::after{content:'';position:absolute;inset:0;z-index:-1}
+    .nav-cursor{display:inline-block;width:2px;height:1.1em;background:linear-gradient(#1d4ed8,#7c3aed);margin-left:2px;animation:blink .8s infinite;vertical-align:middle;border-radius:1px}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .nav-menu{display:flex;gap:4px;list-style:none;align-items:center}
+    .nav-menu a{font-size:.82rem;font-weight:500;color:var(--ink2);padding:6px 11px;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap}
+    .nav-menu a:hover{background:var(--blue-lt);color:var(--blue);text-decoration:none}
+    .nav-hire{background:linear-gradient(135deg,var(--blue),var(--purple))!important;color:#fff!important;border-radius:6px!important;font-weight:600!important}
+    .nav-hire:hover{opacity:.9!important;transform:translateY(-1px)}
+    .nav-dl{border:1.5px solid var(--blue)!important;color:var(--blue)!important;border-radius:6px!important;font-weight:600!important}
+    .nav-dl:hover{background:var(--blue-lt)!important}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:.875rem;font-weight:600;padding:11px 22px;border-radius:var(--r);border:none;cursor:pointer;transition:all .2s;text-decoration:none!important}
+    .btn-grad{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;box-shadow:0 4px 15px rgba(99,102,241,.3)}
+    .btn-grad:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,102,241,.4)}
+    .btn-outline{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+    .btn-outline:hover{background:rgba(255,255,255,.2);transform:translateY(-1px)}
+    .btn-dl{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.5)}
+    .btn-dl:hover{background:rgba(255,255,255,.25);transform:translateY(-1px)}
+    .btn-white{background:#fff;color:var(--blue);font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .btn-white:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+
+    /* ── HERO ── */
+    #hero{position:relative;z-index:1;background:#1e1b4b;min-height:100vh;display:flex;align-items:center;padding-top:66px}
+    .hero-inner{max-width:var(--max);margin:0 auto;padding:60px 24px 80px;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;width:100%}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(52,211,153,.2);border:1px solid rgba(52,211,153,.5);color:#6ee7b7;font-size:.78rem;font-weight:700;letter-spacing:.06em;padding:6px 16px;border-radius:99px;margin-bottom:24px}
+    .pulse{width:7px;height:7px;background:#34d399;border-radius:50%;animation:pulse-dot 2s infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+    .hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.8vw,3.8rem);line-height:1.1;color:#ffffff;margin-bottom:20px;letter-spacing:-.02em}
+    .hero h1 em{font-style:italic;color:#a5b4fc}
+    .hero-lead{font-size:1.05rem;color:#c7d2fe;max-width:52ch;line-height:1.8;margin-bottom:14px}
+    .hero-stack{font-family:var(--mono);font-size:.8rem;color:#818cf8;margin-bottom:30px;letter-spacing:.02em}
+    .hero-stack span{color:#a5b4fc;font-weight:600}
+    .hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+    .hero-pills{display:flex;flex-wrap:wrap;gap:7px}
+    .hpill{font-size:.75rem;font-weight:500;background:rgba(165,180,252,.15);border:1px solid rgba(165,180,252,.3);color:#c7d2fe;padding:5px 13px;border-radius:99px;cursor:default}
+
+    /* terminal */
+    .terminal{background:#0a0d14;border:1px solid #312e81;border-radius:14px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5)}
+    .term-bar{background:#1e1b4b;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #312e81}
+    .term-dot{width:12px;height:12px;border-radius:50%}
+    .term-title{font-family:var(--mono);font-size:.7rem;color:#818cf8;margin-left:8px}
+    .term-body{padding:18px 20px;font-family:var(--mono);font-size:.75rem;line-height:1.85;min-height:300px}
+    .t-dim{color:#6366f1}.t-grn{color:#34d399}.t-blu{color:#818cf8}
+    .t-yel{color:#fbbf24}.t-mag{color:#c084fc}.t-cyn{color:#67e8f9}
+    .t-red{color:#f87171}.t-wht{color:#e0e7ff}
+    .term-cursor{display:inline-block;width:8px;height:1em;background:#818cf8;margin-left:2px;animation:blink .8s infinite;vertical-align:text-bottom;border-radius:1px}
+
+        /* ── SECTIONS ── */
+    section{position:relative;z-index:1;padding:80px 24px}
+    section.alt{background:var(--white)}
+    .wrap{max-width:var(--max);margin:0 auto}
+    .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+    .sec-title{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.4rem);color:var(--ink);margin-bottom:10px;line-height:1.12}
+    .sec-sub{font-size:.95rem;color:#4b5563;max-width:56ch;margin-bottom:44px}
+
+    /* ── METRICS ── */
+    .metrics-band{background:#0f172a;padding:52px 24px;position:relative;z-index:1;overflow:hidden}
+    .metrics-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(99,102,241,.1) 0%,transparent 70%)}
+    .metrics-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;position:relative}
+    .m-num{font-family:var(--serif);font-size:2.8rem;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+    .m-lbl{font-size:.78rem;color:#cbd5e1;margin-top:6px;line-height:1.4}
+    .m-bar{width:40px;height:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);margin:10px auto 0;border-radius:2px}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+    .about-body{font-size:.95rem;color:#1f2937;line-height:1.85;display:flex;flex-direction:column;gap:14px}
+    .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .meta-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:border-color .2s,transform .2s,box-shadow .2s}
+    .meta-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,.08)}
+    .meta-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#374151;margin-bottom:4px}
+    .meta-val{font-size:.85rem;color:#374151;line-height:1.4}
+    .meta-val a{color:var(--blue)}
+
+    /* ── SKILLS ── */
+    .skills-cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+    .sk-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;transition:all .25s}
+    .sk-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);border-color:#a5b4fc;transform:translateY(-3px)}
+    section.alt .sk-card{background:var(--bg)}
+    .sk-head{font-size:.86rem;font-weight:700;color:#111827;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .tags{display:flex;flex-wrap:wrap;gap:6px}
+    .t-blue{font-size:.72rem;font-weight:600;background:var(--blue-lt);color:#1e3a9e;padding:3px 9px;border-radius:4px}
+    .t-teal{font-size:.72rem;font-weight:600;background:var(--teal-lt);color:#0c5c55;padding:3px 9px;border-radius:4px}
+    .t-purple{font-size:.72rem;font-weight:600;background:var(--purple-lt);color:#5b21b6;padding:3px 9px;border-radius:4px}
+    .bars{margin-top:44px;display:flex;flex-direction:column;gap:20px;max-width:640px}
+    .bar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+    .bar-label{font-size:.85rem;font-weight:500;color:#1f2937}
+    .bar-pct{font-size:.78rem;font-weight:700;color:var(--blue);font-family:var(--mono)}
+    .bar-track{height:7px;background:var(--border);border-radius:99px;overflow:hidden}
+    .bar-fill{height:100%;border-radius:99px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+    .bar-fill.py{background:linear-gradient(90deg,#3b82f6,#8b5cf6)}
+    .bar-fill.sql{background:linear-gradient(90deg,#8b5cf6,#ec4899)}
+    .bar-fill.aws{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+    .bar-fill.de{background:linear-gradient(90deg,#10b981,#3b82f6)}
+    .bar-fill.cube{background:linear-gradient(90deg,#06b6d4,#3b82f6)}
+    .bar-fill.cicd{background:linear-gradient(90deg,#6366f1,#8b5cf6)}
+
+    /* ── EXPERIENCE ── */
+    .timeline{position:relative;padding-left:28px}
+    .timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--blue),var(--purple),var(--teal))}
+    .tl{position:relative;margin-bottom:40px}
+    .tl-dot{position:absolute;left:-24px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--white);border:2.5px solid var(--blue);box-shadow:0 0 0 4px rgba(29,78,216,.1);transition:transform .2s}
+    .tl:hover .tl-dot{transform:scale(1.2)}
+    .tl-dot.gray{border-color:var(--ink3);box-shadow:none}
+    .tl-period{font-size:.74rem;font-weight:700;color:var(--blue);font-family:var(--mono);letter-spacing:.03em;margin-bottom:3px}
+    .tl-dot.gray~.tl-body .tl-period{color:var(--ink3)}
+    .tl-role{font-weight:700;font-size:1rem;color:var(--ink)}
+    .tl-org{font-size:.83rem;color:#4b5563;margin-bottom:10px;margin-top:2px}
+    .tl-ul{padding-left:16px;display:flex;flex-direction:column;gap:5px}
+    .tl-ul li{font-size:.88rem;color:#374151;line-height:1.65}
+    .tl-ul li b{color:var(--ink);font-weight:600}
+
+    /* ── CODE ── */
+    .code-wrap{border:1px solid #21262d;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .code-tabs-wrap{background:#161b22;padding:0 8px;border-bottom:1px solid #21262d}
+    .code-tabs{display:flex;flex-wrap:wrap}
+    .code-tab{font-size:.78rem;font-weight:600;padding:12px 16px;cursor:pointer;color:#8b949e;border:none;border-bottom:2px solid transparent;background:none;font-family:var(--sans);transition:all .15s;margin-bottom:-1px}
+    .code-tab.active{color:#58a6ff;border-bottom-color:#58a6ff}
+    .code-tab:hover{color:#e6edf3}
+    .code-panels{background:#0d1117}
+    .code-panel{display:none}
+    .code-panel.active{display:block}
+    .code-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#161b22;border-bottom:1px solid #21262d}
+    .code-filename{font-size:.75rem;color:#8b949e;font-family:var(--mono)}
+    .code-badge{font-size:.68rem;font-weight:600;background:#1f6feb22;color:#58a6ff;border:1px solid #1f6feb55;padding:2px 8px;border-radius:4px}
+    pre.cb{margin:0;padding:22px;overflow-x:auto;font-size:.77rem;line-height:1.85;font-family:var(--mono);color:#e6edf3}
+    .kw{color:#ff7b72}.fn{color:#d2a8ff}.st{color:#a5d6ff}.cm{color:#8b949e;font-style:italic}.nm{color:#79c0ff}.dc{color:#ffa657}
+
+    /* ── PROJECTS ── */
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+    .proj-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;transition:all .25s;display:flex;flex-direction:column}
+    .proj-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);border-color:#a5b4fc;transform:translateY(-4px)}
+    section.alt .proj-card{background:var(--bg)}
+    .proj-lang{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:#374151;margin-bottom:14px;font-family:var(--mono)}
+    .proj-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+    .proj-name{font-weight:700;font-size:.97rem;color:var(--ink);margin-bottom:8px}
+    .proj-desc{font-size:.85rem;color:#374151;line-height:1.65;margin-bottom:14px;flex:1}
+    .proj-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;flex-wrap:wrap;gap:8px}
+    .proj-link{font-size:.8rem;font-weight:600;color:var(--blue)}
+    .proj-link:hover{text-decoration:underline}
+
+    /* ── SERVICES ── */
+    .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+    .svc-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:26px 24px;transition:all .25s}
+    .svc-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);border-color:#a5b4fc;transform:translateY(-4px)}
+    section.alt .svc-card{background:var(--bg)}
+    section.alt .svc-card:hover{background:var(--white)}
+    .svc-icon{font-size:1.6rem;margin-bottom:14px}
+    .svc-name{font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:8px}
+    .svc-desc{font-size:.85rem;color:#374151;line-height:1.65;margin-bottom:14px}
+    .cta-strip{margin-top:32px;background:linear-gradient(135deg,#1e3a8a,#312e81,#1e1b4b);border-radius:14px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;box-shadow:0 8px 32px rgba(99,102,241,.2)}
+    .cta-strip-text{font-weight:700;font-size:1rem;color:#fff}
+    .cta-strip-sub{font-size:.83rem;color:#93c5fd;margin-top:4px}
+
+    /* ── CONTACT ── */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+    .ci-list{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+    .ci{display:flex;align-items:flex-start;gap:13px}
+    .ci-ico{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-lt),var(--purple-lt));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(99,102,241,.15)}
+    .ci-ico svg{stroke:var(--blue)}
+    .ci-label{font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#374151}
+    .ci-val{font-size:.9rem;color:#374151;margin-top:1px}
+    .ci-val a{color:var(--ink2)}
+    .ci-val a:hover{color:var(--blue)}
+    .cform{display:flex;flex-direction:column;gap:14px}
+    .f2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .fg{display:flex;flex-direction:column;gap:5px}
+    .fg label{font-size:.78rem;font-weight:600;color:var(--ink)}
+    .fg input,.fg textarea,.fg select{font-family:var(--sans);font-size:.88rem;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r);background:var(--bg);color:var(--ink);outline:none;resize:vertical;transition:border-color .2s,box-shadow .2s}
+    .fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue);background:var(--white);box-shadow:0 0 0 3px rgba(29,78,216,.08)}
+    .fnote{font-size:.74rem;color:#4b5563}
+
+    /* ── FOOTER ── */
+    footer{background:#0f172a;padding:40px 24px;position:relative;z-index:1;border-top:1px solid #21262d}
+    .foot-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .foot-brand{font-family:var(--serif);font-size:1.25rem;font-weight:400;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.01em}
+    .foot-links{display:flex;gap:20px}
+    .foot-links a{font-size:.82rem;color:#94a3b8;transition:color .2s}
+    .foot-links a:hover{color:#fff;text-decoration:none}
+    .foot-copy{width:100%;font-size:.76rem;color:#94a3b8;margin-top:8px}
+
+    /* ── SCROLL REVEAL ── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:800px){
+      .hero-inner{grid-template-columns:1fr;padding:52px 20px 52px;gap:36px}
+      .terminal{display:none}
+      .about-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
+      .meta-grid{grid-template-columns:1fr 1fr}
+      .metrics-inner{grid-template-columns:1fr 1fr;gap:20px}
+      .nav-menu li:not(:last-child):not(:nth-last-child(2)){display:none}
+      .f2{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none}
+      .bar-fill{transition:none}
+      .pulse,.term-cursor,.nav-cursor{animation:none}
+    }
+  </style>
+
+  <style id="hero-fix">
+    /* FORCE OVERRIDE v3 */
+    #hero { background: #0f172a !important; }
+    .hero h1 { color: #ffffff !important; }
+    .hero h1 em { color: #c084fc !important; font-style: italic !important; background: none !important; -webkit-text-fill-color: #c084fc !important; }
+    .hero-lead { color: #f1f5f9 !important; }
+    .hero-stack { color: #94a3b8 !important; }
+    .hero-stack span { color: #7dd3fc !important; font-weight: 600 !important; }
+    .hero-badge { color: #34d399 !important; background: rgba(16,185,129,.15) !important; border: 1px solid rgba(16,185,129,.4) !important; }
+    .hpill { color: #f1f5f9 !important; background: rgba(255,255,255,.12) !important; border: 1px solid rgba(255,255,255,.3) !important; }
+    .m-lbl { color: #cbd5e1 !important; }
+    .m-num { -webkit-text-fill-color: transparent !important; }
+    .foot-copy { color: #94a3b8 !important; }
+    .foot-links a { color: #94a3b8 !important; }
+    #bg-canvas { display: none !important; }
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Amit Kumar Sahu<span class="nav-cursor"></span></a>
+    <ul class="nav-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#code">Code</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#services">Freelance</a></li>
+      <li><a href="Amit_Kumar_Sahu_Resume.pdf" download class="nav-dl">↓ Resume</a></li>
+      <li><a href="#contact" class="nav-hire">Hire Me</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="pulse"></span>Open to work &amp; freelance</div>
+      <h1>Senior Data Engineer<br>who builds pipelines<br><em>that actually scale</em></h1>
+      <p class="hero-lead">9+ years designing enterprise data lakes, lakehouse platforms, and semantic analytics layers — Eli Lilly's 200K+ clinical assets to Kenko AI's 500+ multi-tenant SaaS clients.</p>
+      <p class="hero-stack"><span>python</span> · <span>pyspark</span> · <span>sql</span> · <span>aws</span> · <span>apache-iceberg</span> · <span>cube-cloud-ldm</span> · <span>airflow</span></p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-grad">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Let's talk
+        </a>
+        <a href="Amit_Kumar_Sahu_Resume.pdf" download class="btn btn-dl">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+      <div class="hero-pills">
+        <span class="hpill">Data Lakes</span><span class="hpill">Lakehouse Architecture</span>
+        <span class="hpill">Real-time Streaming</span><span class="hpill">Multi-tenant Analytics</span>
+        <span class="hpill">AWS Full Stack</span><span class="hpill">Pharma &amp; SaaS</span>
+        <span class="hpill">Mentoring</span>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot" style="background:#ff5f57"></div>
+        <div class="term-dot" style="background:#febc2e"></div>
+        <div class="term-dot" style="background:#28c840"></div>
+        <span class="term-title">astra-pipeline ~ bash</span>
+      </div>
+      <div class="term-body" id="terminal-output"></div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics-band">
+  <div class="metrics-inner">
+    <div class="reveal"><div class="m-num" id="cnt-latency">0%</div><div class="m-lbl">Query latency cut<br>Kenko AI</div><div class="m-bar"></div></div>
+    <div class="reveal"><div class="m-num" id="cnt-assets">0</div><div class="m-lbl">Clinical assets catalogued<br>Eli Lilly</div><div class="m-bar"></div></div>
+    <div class="reveal"><div class="m-num" id="cnt-sla">0%</div><div class="m-lbl">SLA compliance<br>achieved</div><div class="m-bar"></div></div>
+    <div class="reveal"><div class="m-num" id="cnt-tb">0 TB</div><div class="m-lbl">Data migrated<br>AspireNXT</div><div class="m-bar"></div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <h2 class="sec-title reveal">Data engineer, problem solver,<br>occasional chess player</h2>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>I'm Amit Kumar Sahu — Senior Data Engineer based in Bengaluru. 9+ years building data infrastructure that delivers: 40–60% pipeline efficiency gains, dramatically reduced data incidents, and real cost savings on BI tooling.</p>
+        <p>My career spans regulated pharma (Eli Lilly — 200K+ clinical assets with Veeva Vault and Axon Data Catalog), high-growth SaaS (Kenko AI — full lakehouse from scratch, 500+ tenants), IoT (SpanIdea — real-time MQTT sensor pipelines), consulting (AspireNXT), and enterprise automotive (Infosys × Daimler AG).</p>
+        <p>Beyond engineering I mentor early-career data folks, play competitive chess, and read tech blogs voraciously. Open to Senior / Lead / Staff Data Engineer roles and freelance data engineering engagements.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+          <a href="Amit_Kumar_Sahu_Resume.pdf" download class="btn" style="background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;padding:10px 20px;font-size:.85rem;box-shadow:0 4px 15px rgba(99,102,241,.25)">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume
+          </a>
+          <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="btn" style="background:var(--bg);color:var(--blue);border:1.5px solid var(--border);padding:10px 20px;font-size:.85rem">LinkedIn ↗</a>
+        </div>
+      </div>
+      <div class="meta-grid reveal">
+        <div class="meta-card"><div class="meta-label">Location</div><div class="meta-val">Bengaluru, Karnataka, India</div></div>
+        <div class="meta-card"><div class="meta-label">Open to</div><div class="meta-val">Remote · Hybrid · Freelance</div></div>
+        <div class="meta-card"><div class="meta-label">Email</div><div class="meta-val"><a href="mailto:nikuamit.sahu256@gmail.com">nikuamit.sahu256@gmail.com</a></div></div>
+        <div class="meta-card"><div class="meta-label">Phone</div><div class="meta-val"><a href="tel:+919916681930">+91 9916681930</a></div></div>
+        <div class="meta-card"><div class="meta-label">Degree</div><div class="meta-val">B.Tech CS&amp;E — VSSUT Burla</div></div>
+        <div class="meta-card"><div class="meta-label">Achievement</div><div class="meta-val">ACM-ICPC World Semifinalist 2013</div></div>
+        <div class="meta-card" style="grid-column:span 2"><div class="meta-label">Interests</div><div class="meta-val">Competitive programming · Chess · Tech blogs · Mentoring · Poetry</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">Technical Skills</p>
+    <h2 class="sec-title reveal">Core stack, built in production</h2>
+    <p class="sec-sub reveal">Every tool here has been used in live, production-grade systems — not side projects.</p>
+    <div class="skills-cols">
+      <div class="sk-card reveal"><div class="sk-head">🐍 Primary Languages</div><div class="tags"><span class="t-blue">Python</span><span class="t-blue">PySpark</span><span class="t-blue">SQL</span><span class="t-teal">Bash</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">☁️ AWS Data Stack</div><div class="tags"><span class="t-blue">S3</span><span class="t-blue">Glue</span><span class="t-blue">DMS/CDC</span><span class="t-blue">Kinesis</span><span class="t-blue">Redshift</span><span class="t-blue">Athena</span><span class="t-blue">Lake Formation</span><span class="t-teal">Lambda</span><span class="t-teal">Step Functions</span><span class="t-teal">RDS</span><span class="t-teal">Bedrock</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">🏗️ Data Engineering</div><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">Delta Lake</span><span class="t-blue">Apache Airflow</span><span class="t-blue">DBT</span><span class="t-teal">Databricks</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">📊 Semantic Layer &amp; BI</div><div class="tags"><span class="t-blue">Cube Cloud LDM</span><span class="t-blue">Multi-tenant RLS</span><span class="t-blue">JWT Auth</span><span class="t-teal">GoodData</span><span class="t-teal">QuickSight</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">🗄️ Databases</div><div class="tags"><span class="t-blue">PostgreSQL</span><span class="t-blue">MySQL</span><span class="t-teal">Oracle</span><span class="t-teal">DynamoDB</span><span class="t-teal">Azure IoT Hub</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">⚙️ DevOps &amp; AI Tools</div><div class="tags"><span class="t-blue">Docker</span><span class="t-blue">Git</span><span class="t-blue">DevSecOps</span><span class="t-purple">Claude AI</span><span class="t-purple">Cursor</span><span class="t-purple">GitHub Copilot</span><span class="t-teal">Linux</span></div></div>
+    </div>
+    <div class="bars reveal">
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">Python &amp; PySpark</span><span class="bar-pct">90%</span></div><div class="bar-track"><div class="bar-fill py" data-w="90"></div></div></div>
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">SQL &amp; Data Modeling</span><span class="bar-pct">88%</span></div><div class="bar-track"><div class="bar-fill sql" data-w="88"></div></div></div>
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">AWS Data Stack</span><span class="bar-pct">85%</span></div><div class="bar-track"><div class="bar-fill aws" data-w="85"></div></div></div>
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">Data Engineering &amp; Lakehouse</span><span class="bar-pct">85%</span></div><div class="bar-track"><div class="bar-fill de" data-w="85"></div></div></div>
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">Semantic Layer — Cube Cloud LDM</span><span class="bar-pct">80%</span></div><div class="bar-track"><div class="bar-fill cube" data-w="80"></div></div></div>
+      <div class="bar-row"><div class="bar-top"><span class="bar-label">CI/CD &amp; DevOps</span><span class="bar-pct">75%</span></div><div class="bar-track"><div class="bar-fill cicd" data-w="75"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Experience &amp; Education</p>
+    <h2 class="sec-title reveal">9 years across pharma, SaaS,<br>IoT &amp; enterprise</h2>
+    <p class="sec-sub reveal">Consistent delivery of production data platforms that cut costs, raise quality, and scale.</p>
+    <div class="timeline">
+      <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
+        <p class="tl-period">Feb 2026 – Apr 2026</p><p class="tl-role">Senior Data Engineer</p>
+        <p class="tl-org">Kenko AI · SaaS Fitness Tech · Bengaluru</p>
+        <ul class="tl-ul">
+          <li>Architected <b>AWS Data Lakehouse</b> for 500+ clients via DMS CDC, S3 Bronze, Apache Iceberg Silver, Athena Gold — query latency <b>−45%</b>, SLA 70% → 98%.</li>
+          <li>Designed <b>Cube Cloud LDM</b> — 18 cubes, 11 pre-aggregated views, 58 KPIs; JWT multi-tenant RLS for 500+ operators.</li>
+          <li>Built <b>9-check DQ framework</b> with SNS alerting — data incidents <b>−60%</b>, confidence 82% → 97%.</li>
+          <li>20-table Gold layer replacing GoodData — BI licensing costs <b>−35%</b>.</li>
+        </ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
+        <p class="tl-period">Feb 2021 – May 2024</p><p class="tl-role">Engineer II — Software Configuration &amp; Development</p>
+        <p class="tl-org">Eli Lilly and Company · Pharma · Bengaluru</p>
+        <ul class="tl-ul">
+          <li>Standardised <b>20+ reusable Data Products</b> and DWS APIs — incident response time <b>−40%</b>.</li>
+          <li>Migrated <b>5+ TB CTMS clinical data</b> IMPACT → Veeva Vault — onboarding <b>+60%</b> across 6+ trials.</li>
+          <li><b>Axon Data Catalog</b> for 200K+ clinical assets — discoverability <b>+50%</b>.</li>
+          <li>Won <b>Lilly Global Ideas &amp; Innovation Award</b> for LillyTV — scaled to 1,500+ employees.</li>
+        </ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
+        <p class="tl-period">Aug 2019 – Jun 2020</p><p class="tl-role">Data Engineer</p>
+        <p class="tl-org">AspireNXT Pvt. Ltd. · Consulting · Bengaluru</p>
+        <ul class="tl-ul">
+          <li>Led 5-member team — AWS Data Lakes across finance, IoT, healthcare; delivery velocity <b>+30%</b>.</li>
+          <li>Migrated <b>10+ TB</b> — latency −40%, infra costs −25%.</li>
+        </ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
+        <p class="tl-period">Jan 2019 – Jul 2019</p><p class="tl-role">Senior Software Engineer</p>
+        <p class="tl-org">SpanIdea Systems · IoT · Bengaluru</p>
+        <ul class="tl-ul">
+          <li>Span Park smart parking — Python, Raspberry Pi, PostgreSQL, Azure IoT Hub, MQTT; search time <b>−50%</b>.</li>
+        </ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
+        <p class="tl-period">Aug 2015 – Dec 2018</p><p class="tl-role">Senior Systems Engineer</p>
+        <p class="tl-org">Infosys Limited · Client: Daimler AG · Bengaluru</p>
+        <ul class="tl-ul">
+          <li>ETL automation across 12+ projects — downtime −20%, manual effort −30%.</li>
+        </ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot gray"></div><div class="tl-body">
+        <p class="tl-period">2011 – 2015</p><p class="tl-role">B.Tech — Computer Science &amp; Engineering</p>
+        <p class="tl-org">VSSUT, Burla, Odisha</p>
+        <ul class="tl-ul"><li>Founded <b>ENIGMA</b> coding club · <b>ACM-ICPC World Semifinalist 2013</b></li></ul>
+      </div></div>
+      <div class="tl reveal"><div class="tl-dot gray"></div><div class="tl-body">
+        <p class="tl-period">2003 – 2010</p><p class="tl-role">AISSCE &amp; AISSE</p>
+        <p class="tl-org">Jawahar Navodaya Vidyalaya, Sarang, Dhenkanal, Odisha</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CODE SAMPLES -->
+<section id="code">
+  <div class="wrap">
+    <p class="eyebrow">Code Samples</p>
+    <h2 class="sec-title reveal">Real Python, PySpark &amp; SQL<br>from production systems</h2>
+    <p class="sec-sub reveal">Patterns from Kenko AI and Eli Lilly. Full source on GitHub.</p>
+    <div class="code-wrap reveal">
+      <div class="code-tabs-wrap">
+        <div class="code-tabs">
+          <button class="code-tab active" onclick="showTab('iceberg',this)">Iceberg Pipeline</button>
+          <button class="code-tab" onclick="showTab('dq',this)">DQ Engine</button>
+          <button class="code-tab" onclick="showTab('cdc',this)">DMS CDC Stream</button>
+          <button class="code-tab" onclick="showTab('cube',this)">Cube LDM</button>
+          <button class="code-tab" onclick="showTab('gold',this)">Gold Revenue Mart</button>
+        </div>
+      </div>
+      <div class="code-panels">
+        <div class="code-panel active" id="panel-iceberg">
+          <div class="code-header"><span class="code-filename">processing/silver/bronze_to_iceberg.py</span><span class="code-badge">Python · PySpark</span></div>
+          <pre class="cb"><span class="cm"># Bronze → Silver: Apache Iceberg with schema evolution & dedup</span>
+<span class="cm"># Kenko AI — 500+ tenant lakehouse on AWS S3 Tables</span>
+
+<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> SparkSession
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
+
+<span class="kw">def</span> <span class="fn">bronze_to_silver_iceberg</span>(
+    spark: SparkSession, bronze_path: <span class="nm">str</span>,
+    silver_table: <span class="nm">str</span>, tenant_id: <span class="nm">str</span>, batch_date: <span class="nm">str</span>,
+) -&gt; <span class="nm">None</span>:
+
+    df = (spark.read.format(<span class="st">"delta"</span>).load(bronze_path)
+          .filter((F.col(<span class="st">"_batch_date"</span>) == batch_date) &amp;
+                  (F.col(<span class="st">"tenant_id"</span>) == tenant_id)))
+
+    <span class="cm"># Keep latest per event_id</span>
+    w = Window.partitionBy(<span class="st">"event_id"</span>).orderBy(F.col(<span class="st">"kafka_ts"</span>).desc())
+    deduped = (df.withColumn(<span class="st">"_rn"</span>, F.row_number().over(w))
+                 .filter(F.col(<span class="st">"_rn"</span>) == <span class="dc">1</span>).drop(<span class="st">"_rn"</span>))
+
+    silver_df = deduped.select(
+        <span class="st">"event_id"</span>, <span class="st">"tenant_id"</span>, <span class="st">"user_id"</span>,
+        <span class="st">"event_type"</span>, <span class="st">"amount"</span>, <span class="st">"kafka_ts"</span>,
+        F.current_timestamp().alias(<span class="st">"_silver_ts"</span>),
+        F.lit(batch_date).alias(<span class="st">"_batch_date"</span>),
+    )
+
+    (silver_df.writeTo(silver_table)
+     .option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>)
+     .partitionedBy(<span class="st">"tenant_id"</span>, <span class="st">"_batch_date"</span>)
+     .createOrReplace())</pre>
+        </div>
+        <div class="code-panel" id="panel-dq">
+          <div class="code-header"><span class="code-filename">dq/quality_engine.py</span><span class="code-badge">Python · PySpark</span></div>
+          <pre class="cb"><span class="cm"># 9-rule DQ Engine — cut incidents 60%, confidence 82%→97% at Kenko AI</span>
+
+<span class="kw">from</span> <span class="nm">dataclasses</span> <span class="kw">import</span> dataclass
+<span class="kw">from</span> <span class="nm">enum</span> <span class="kw">import</span> Enum
+<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> DataFrame
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+
+<span class="kw">class</span> <span class="fn">RuleType</span>(str, Enum):
+    NOT_NULL = <span class="st">"not_null"</span>;  UNIQUE = <span class="st">"unique"</span>;  RANGE = <span class="st">"range"</span>
+    REGEX = <span class="st">"regex"</span>;  ACCEPTED_VALUES = <span class="st">"accepted_values"</span>
+    REFERENTIAL = <span class="st">"referential_integrity"</span>;  FRESHNESS = <span class="st">"freshness"</span>
+    SCHEMA = <span class="st">"schema_check"</span>;  SEMANTIC = <span class="st">"semantic"</span>
+
+@dataclass
+<span class="kw">class</span> <span class="fn">DQResult</span>:
+    rule_name: <span class="nm">str</span>;  passed: <span class="nm">bool</span>
+    total_rows: <span class="nm">int</span>;  failed_rows: <span class="nm">int</span>;  failure_rate: <span class="nm">float</span>
+
+<span class="kw">class</span> <span class="fn">QualityEngine</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, rules, alert_threshold=<span class="dc">0.05</span>):
+        self.rules = rules;  self.alert_threshold = alert_threshold
+
+    <span class="kw">def</span> <span class="fn">run</span>(self, df: DataFrame, quarantine_path=<span class="nm">None</span>):
+        total = df.count();  bad_mask = F.lit(<span class="nm">False</span>);  results = []
+        <span class="kw">for</span> rule <span class="kw">in</span> self.rules:
+            fail_cond = self._build_condition(rule)
+            failed = df.filter(fail_cond).count()
+            rate = failed / total <span class="kw">if</span> total <span class="kw">else</span> <span class="dc">0.0</span>
+            results.append(DQResult(rule.name, rate &lt;= self.alert_threshold,
+                                    total, failed, round(rate, <span class="dc">4</span>)))
+            bad_mask = bad_mask | fail_cond
+        clean_df = df.filter(~bad_mask)
+        <span class="kw">if</span> quarantine_path:
+            df.filter(bad_mask).write.format(<span class="st">"delta"</span>).mode(<span class="st">"append"</span>).save(quarantine_path)
+        <span class="kw">return</span> clean_df, results</pre>
+        </div>
+        <div class="code-panel" id="panel-cdc">
+          <div class="code-header"><span class="code-filename">ingestion/streaming/dms_cdc_to_bronze.py</span><span class="code-badge">Python · Structured Streaming</span></div>
+          <pre class="cb"><span class="cm"># AWS DMS CDC → Bronze Iceberg — real-time studio data at Kenko AI</span>
+
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.types</span> <span class="kw">import</span> StructType, StringType, TimestampType
+
+CDC_SCHEMA = (StructType()
+    .add(<span class="st">"Op"</span>, StringType())        <span class="cm"># I / U / D</span>
+    .add(<span class="st">"tenant_id"</span>, StringType())
+    .add(<span class="st">"member_id"</span>, StringType())
+    .add(<span class="st">"status"</span>, StringType())
+    .add(<span class="st">"updated_at"</span>, TimestampType()))
+
+<span class="kw">def</span> <span class="fn">run_cdc_stream</span>(spark, s3_path: <span class="nm">str</span>, bronze_table: <span class="nm">str</span>):
+    raw = (spark.readStream.format(<span class="st">"csv"</span>)
+           .schema(CDC_SCHEMA).option(<span class="st">"header"</span>, <span class="st">"true"</span>).load(s3_path))
+
+    bronze = raw.filter(F.col(<span class="st">"Op"</span>).isin([<span class="st">"I"</span>, <span class="st">"U"</span>])).select(
+        <span class="st">"tenant_id"</span>, <span class="st">"member_id"</span>, <span class="st">"status"</span>,
+        F.col(<span class="st">"updated_at"</span>).alias(<span class="st">"source_ts"</span>),
+        F.current_timestamp().alias(<span class="st">"ingest_ts"</span>),
+        F.to_date(<span class="st">"updated_at"</span>).alias(<span class="st">"_date"</span>),
+    )
+
+    <span class="kw">def</span> <span class="fn">write_batch</span>(batch_df, _):
+        batch_df.writeTo(bronze_table).option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>).append()
+
+    (bronze.writeStream.foreachBatch(write_batch)
+     .option(<span class="st">"checkpointLocation"</span>, <span class="st">f"s3://ckpts/{bronze_table}"</span>)
+     .trigger(processingTime=<span class="st">"60 seconds"</span>).start().awaitTermination())</pre>
+        </div>
+        <div class="code-panel" id="panel-cube">
+          <div class="code-header"><span class="code-filename">semantic/memberships.js</span><span class="code-badge">Cube Cloud LDM · SQL</span></div>
+          <pre class="cb"><span class="cm">// Cube Cloud LDM — 58 KPIs, JWT multi-tenant RLS, 500+ operators</span>
+
+cube(<span class="st">`Memberships`</span>, {
+  sql: <span class="st">`SELECT * FROM gold.memberships_daily
+        WHERE tenant_id = '{ COMPILE_CONTEXT.securityContext.tenant_id }'`</span>,
+
+  measures: {
+    total_members:  { type: <span class="st">`count`</span>, sql: <span class="st">`member_id`</span> },
+    active_members: { type: <span class="st">`count`</span>, sql: <span class="st">`member_id`</span>,
+                      filters: [{ sql: <span class="st">`{CUBE}.status = 'active'`</span> }] },
+    churn_rate: {
+      type: <span class="st">`number`</span>,
+      sql: <span class="st">`ROUND(COUNT(CASE WHEN status='churned' THEN 1 END)
+            * 100.0 / NULLIF(COUNT(member_id), 0), 2)`</span>,
+    },
+    mrr: { type: <span class="st">`sum`</span>, sql: <span class="st">`monthly_amount`</span>, format: <span class="st">`currency`</span> },
+  },
+
+  dimensions: {
+    tenant_id:  { sql: <span class="st">`tenant_id`</span>,  type: <span class="st">`string`</span> },
+    status:     { sql: <span class="st">`status`</span>,     type: <span class="st">`string`</span> },
+    start_date: { sql: <span class="st">`start_date`</span>, type: <span class="st">`time`</span>   },
+  },
+
+  pre_aggregations: {
+    daily_by_tenant: {
+      measures: [total_members, active_members, mrr],
+      dimensions: [tenant_id, status],
+      time_dimension: start_date, granularity: <span class="st">`day`</span>,
+    },
+  },
+});</pre>
+        </div>
+        <div class="code-panel" id="panel-gold">
+          <div class="code-header"><span class="code-filename">processing/gold/revenue_mart.py</span><span class="code-badge">Python · PySpark · SQL</span></div>
+          <pre class="cb"><span class="cm"># Gold: MoM Revenue Mart — replaced GoodData, cut licensing 35%</span>
+
+<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
+<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
+<span class="kw">from</span> <span class="nm">delta.tables</span> <span class="kw">import</span> DeltaTable
+
+<span class="kw">def</span> <span class="fn">build_revenue_mart</span>(spark, silver_path, gold_path, batch_date):
+    silver = (spark.read.format(<span class="st">"delta"</span>).load(silver_path)
+              .filter(F.col(<span class="st">"_batch_date"</span>) == batch_date))
+
+    w = Window.partitionBy(<span class="st">"tenant_id"</span>).orderBy(<span class="st">"month"</span>)
+
+    revenue = (
+        silver.groupBy(<span class="st">"tenant_id"</span>, <span class="st">"studio_id"</span>,
+                       F.date_trunc(<span class="st">"month"</span>, <span class="st">"payment_date"</span>).alias(<span class="st">"month"</span>))
+        .agg(F.sum(<span class="st">"amount"</span>).alias(<span class="st">"total_revenue"</span>),
+             F.countDistinct(<span class="st">"member_id"</span>).alias(<span class="st">"paying_members"</span>))
+        .withColumn(<span class="st">"prev_revenue"</span>, F.lag(<span class="st">"total_revenue"</span>).over(w))
+        .withColumn(<span class="st">"mom_growth_pct"</span>, F.round(
+            (F.col(<span class="st">"total_revenue"</span>) - F.col(<span class="st">"prev_revenue"</span>))
+            / F.nullif(F.col(<span class="st">"prev_revenue"</span>), F.lit(<span class="dc">0</span>)) * <span class="dc">100</span>, <span class="dc">2</span>))
+        .withColumn(<span class="st">"_gold_ts"</span>, F.current_timestamp())
+    )
+
+    <span class="kw">if</span> DeltaTable.isDeltaTable(spark, gold_path):
+        DeltaTable.forPath(spark, gold_path).alias(<span class="st">"t"</span>).merge(
+            revenue.alias(<span class="st">"s"</span>),
+            <span class="st">"t.tenant_id=s.tenant_id AND t.studio_id=s.studio_id AND t.month=s.month"</span>
+        ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()
+    <span class="kw">else</span>:
+        revenue.write.format(<span class="st">"delta"</span>).partitionBy(<span class="st">"tenant_id"</span>).save(gold_path)</pre>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;text-align:right">
+      <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="btn" style="background:var(--bg);color:var(--blue);border:1.5px solid var(--border);font-size:.82rem;padding:8px 16px">Full Astra repo on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Projects</p>
+    <h2 class="sec-title reveal">Python &amp; data engineering<br>in production code</h2>
+    <p class="sec-sub reveal">Real code, real patterns, runnable locally.</p>
+    <div class="proj-grid">
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PySpark · SQL</div><div class="proj-name">Astra Data Platform</div><div class="proj-desc">Bronze→Silver→Gold medallion lakehouse. Kafka streaming, 9-rule DQ engine, SCD Type 2, config-driven pipelines, CI/CD auto-release.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">PySpark</span><span class="t-teal">Kafka</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · SQL · AWS</div><div class="proj-name">Data Quality Framework</div><div class="proj-desc">9-check PySpark DQ engine — quarantine writes, SNS alerting, HTML reports. Incidents −60%, confidence 82%→97% at Kenko AI.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Python</span><span class="t-teal">Great Expectations</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#e38c00"></span>SQL · Cube Cloud LDM</div><div class="proj-name">Multi-tenant Semantic Layer</div><div class="proj-desc">18 cubes, 58 KPIs, JWT RLS for 500+ tenants. Replaced GoodData — licensing −35%, latency −45%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Cube Cloud</span><span class="t-teal">JWT RLS</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PySpark · Airflow</div><div class="proj-name">Clinical Data Migration</div><div class="proj-desc">5+ TB CTMS data IMPACT → Veeva Vault at Eli Lilly. GxP compliant, Airflow-orchestrated. Onboarding +60% across 6+ trials.</div><div class="proj-footer"><div class="tags"><span class="t-blue">PySpark</span><span class="t-teal">Airflow</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PostgreSQL · MQTT</div><div class="proj-name">Span Park — IoT Smart Parking</div><div class="proj-desc">Real-time smart parking using Python, Raspberry Pi, Azure IoT Hub, MQTT. Parking search time −50%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Python</span><span class="t-teal">Azure IoT</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · Axon · PySpark</div><div class="proj-name">Axon Data Catalog</div><div class="proj-desc">Eli Lilly Enterprise Data Backbone — 200K+ clinical assets catalogued. Discoverability +50%, validation +30%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Axon Catalog</span><span class="t-teal">PySpark</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <p class="eyebrow">Freelance Services</p>
+    <h2 class="sec-title reveal">What I can build for you</h2>
+    <p class="sec-sub reveal">Time-boxed data engineering work. Remote-first, available now.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal"><div class="svc-icon">🏗️</div><div class="svc-name">Data Lakehouse Architecture</div><div class="svc-desc">Bronze/Silver/Gold on AWS — Apache Iceberg or Delta Lake, DMS CDC ingestion, PySpark transforms, Athena Gold layer.</div><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">AWS</span><span class="t-teal">PySpark</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon">⚡</div><div class="svc-name">Real-time Pipelines</div><div class="svc-desc">Streaming via Kinesis or DMS CDC — end-to-end with SNS monitoring, schema evolution, and checkpointing.</div><div class="tags"><span class="t-blue">Kinesis</span><span class="t-blue">DMS CDC</span><span class="t-teal">Glue</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon">📊</div><div class="svc-name">Semantic Layer &amp; Analytics</div><div class="svc-desc">Cube Cloud LDM — cubes, pre-aggregations, KPIs, JWT multi-tenant RLS. Replace expensive BI tools.</div><div class="tags"><span class="t-blue">Cube Cloud</span><span class="t-teal">JWT RLS</span><span class="t-teal">SQL</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon">🧪</div><div class="svc-name">Data Quality Framework</div><div class="svc-desc">9-rule automated DQ with SNS alerting and quarantine. Proven: −60% incidents, confidence to 97%.</div><div class="tags"><span class="t-blue">Great Expectations</span><span class="t-teal">Python</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon">🔄</div><div class="svc-name">ETL / ELT Development</div><div class="svc-desc">PySpark, Python, SQL — batch or micro-batch. Migration, CDC, Airflow orchestration, performance tuning.</div><div class="tags"><span class="t-blue">Python</span><span class="t-blue">PySpark</span><span class="t-blue">SQL</span></div></div>
+      <div class="svc-card reveal"><div class="svc-icon">🎓</div><div class="svc-name">Data Engineering Mentoring</div><div class="svc-desc">1:1 — interview prep, code reviews, architecture walkthroughs, career guidance for early-career engineers.</div><div class="tags"><span class="t-blue">1:1 Sessions</span><span class="t-teal">Career</span></div></div>
+    </div>
+    <div class="cta-strip reveal">
+      <div><div class="cta-strip-text">Ready to start a project?</div><div class="cta-strip-sub">Typical: 2–12 weeks · Remote-first · Available now</div></div>
+      <a href="#contact" class="btn btn-white">Get a free scoping call</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">Contact</p>
+    <h2 class="sec-title reveal">Let's build something together</h2>
+    <p class="sec-sub reveal">Full-time role or freelance — I reply within 24 hours.</p>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="ci-list">
+          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:nikuamit.sahu256@gmail.com">nikuamit.sahu256@gmail.com</a></div></div></div>
+          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.8 19.8 0 0 1 1.61 3.42 2 2 0 0 1 3.59 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.35a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg></div><div><div class="ci-label">Phone</div><div class="ci-val"><a href="tel:+919916681930">+91 99166 81930</a></div></div></div>
+          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">linkedin.com/in/aks1993</a></div></div></div>
+          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="ci-label">Location</div><div class="ci-val">Bengaluru, Karnataka, India</div></div></div>
+          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div><div class="ci-label">Resume</div><div class="ci-val"><a href="Amit_Kumar_Sahu_Resume.pdf" download>Download PDF ↓</a></div></div></div>
+        </div>
+      </div>
+      <form class="cform reveal" action="https://formspree.io/f/xpwzgnjv" method="POST">
+        <div class="f2">
+          <div class="fg"><label for="fn">First name</label><input type="text" id="fn" name="first_name" placeholder="Jane" required/></div>
+          <div class="fg"><label for="ln">Last name</label><input type="text" id="ln" name="last_name" placeholder="Doe"/></div>
+        </div>
+        <div class="fg"><label for="em">Email</label><input type="email" id="em" name="email" placeholder="jane@company.com" required/></div>
+        <div class="fg"><label for="et">Enquiry type</label>
+          <select id="et" name="enquiry_type">
+            <option value="">Select…</option>
+            <option>Full-time role</option>
+            <option>Freelance project</option>
+            <option>Consulting / advisory</option>
+            <option>Mentoring</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label for="msg">Message</label><textarea id="msg" name="message" rows="5" placeholder="Tell me about the role or project — stack, timeline, team size…" required></textarea></div>
+        <p class="fnote">Sent directly to my inbox. I reply within 24 hours on business days.</p>
+        <button type="submit" class="btn btn-grad" style="align-self:flex-start">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <span class="foot-brand">Amit Kumar Sahu</span>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:nikuamit.sahu256@gmail.com">Email</a>
+      <a href="tel:+919916681930">Phone</a>
+      <a href="Amit_Kumar_Sahu_Resume.pdf" download>Resume ↓</a>
+    </div>
+    <p class="foot-copy">© 2026 Amit Kumar Sahu · Senior Data Engineer · Bengaluru, India · Open to work &amp; freelance</p>
+  </div>
+</footer>
+
+<script>
+// ── PARTICLE CANVAS ──
+(function(){
+  const c=document.getElementById('bg-canvas'),ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  window.addEventListener('resize',resize);resize();
+  const cols=['#3b82f6','#8b5cf6','#06b6d4','#10b981','#f59e0b','#ec4899'];
+  for(let i=0;i<70;i++) pts.push({x:Math.random()*1200,y:Math.random()*900,r:Math.random()*1.6+.4,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,c:cols[Math.floor(Math.random()*cols.length)],a:Math.random()*.5+.15});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<pts.length;i++){
+      const p=pts[i];p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c;ctx.globalAlpha=p.a;ctx.fill();
+      for(let j=i+1;j<pts.length;j++){
+        const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle='#4f46e5';ctx.globalAlpha=(1-d/130)*.07;ctx.lineWidth=.6;ctx.stroke();}
+      }
+    }
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── NAV SCROLL SHADOW ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);
+});
+
+// ── TERMINAL TYPEWRITER ──
+(function(){
+  const lines=[
+    {t:'dim',s:'$ python -m orchestration.pipeline \\'},
+    {t:'dim',s:'    --entity events --batch-date 2024-01-15'},
+    {t:'dim',s:''},
+    {t:'blu',s:'[INFO] pipeline_start  stages: [bronze→silver, silver→gold]'},
+    {t:'wht',s:'[INFO] ingest_done     rows: 12,847  path: s3://bronze/events'},
+    {t:'yel',s:'[INFO] dq_rule  not_null         PASS  failed: 0    rate: 0.0%'},
+    {t:'yel',s:'[INFO] dq_rule  amount_positive  PASS  failed: 412  rate: 3.2%'},
+    {t:'yel',s:'[INFO] dq_rule  event_type_valid PASS  failed: 0    rate: 0.0%'},
+    {t:'grn',s:'[INFO] silver_done     clean_rows: 12,435  quarantined: 412'},
+    {t:'wht',s:'[INFO] gold_done       events_daily: 48 rows'},
+    {t:'cyn',s:'[INFO] pipeline_done   total_s: 6.3  stages: 2/2 ok'},
+    {t:'dim',s:''},
+    {t:'dim',s:'$ '},
+  ];
+  const out=document.getElementById('terminal-output');
+  let li=0,ci=0;
+  function type(){
+    if(li>=lines.length){out.innerHTML+='<span class="term-cursor"></span>';return;}
+    const line=lines[li];
+    if(ci===0&&li>0)out.innerHTML+='\n';
+    if(ci<line.s.length){
+      let sp=document.getElementById('tl-'+li);
+      if(!sp){sp=document.createElement('span');sp.id='tl-'+li;sp.className='t-'+line.t;out.appendChild(sp);}
+      sp.textContent+=line.s[ci];ci++;
+      setTimeout(type,line.s.length===0?0:Math.random()*18+40);
+    }else{li++;ci=0;setTimeout(type,90);}
+  }
+  setTimeout(type,900);
+})();
+
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── SKILL BARS ──
+const barObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');});},{threshold:.3});
+document.querySelectorAll('.bars').forEach(el=>barObs.observe(el));
+
+// ── COUNTERS ──
+function counter(el,target,sfx,dur=1800){
+  let s=null;
+  function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3),v=Math.round(e*target);
+    el.textContent=(v>=1000?v.toLocaleString():v)+sfx;if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);
+}
+const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  counter(document.getElementById('cnt-latency'),45,'%');
+  counter(document.getElementById('cnt-assets'),200000,'+');
+  counter(document.getElementById('cnt-sla'),98,'%');
+  counter(document.getElementById('cnt-tb'),10,' TB+');
+  cObs.disconnect();}});},{threshold:.5});
+const band=document.querySelector('.metrics-band');if(band)cObs.observe(band);
+
+// ── CODE TABS ──
+function showTab(name,el){
+  document.querySelectorAll('.code-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');el.classList.add('active');
+}
+</script>
+</body>
+</html>
