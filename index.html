@@ -5,10 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Amit Kumar Sahu — Senior Data Engineer. Python · PySpark · SQL · AWS · Apache Iceberg."/>
   <meta property="og:title" content="Amit Kumar Sahu — Senior Data Engineer"/>
-  <meta property="og:description" content="9+ years building lakehouse and streaming data platforms across pharma, SaaS, IoT, consulting, and automotive manufacturing. Open to Senior/Lead Data Engineer roles."/>
+  <meta property="og:description" content="Senior Data Engineer with 9+ years building enterprise-grade data lakes, lakehouse platforms and semantic analytics layers across pharma (Eli Lilly, 200K+ clinical assets) and SaaS (Kenko AI, 500+ multi-tenant clients). Consistent 40–60% improvements in pipeline efficiency, data quality and cost."/>
   <meta property="og:url" content="https://nikuamit.github.io"/>
   <meta property="og:type" content="website"/>
   <title>Amit Kumar Sahu | Senior Data Engineer</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Amit Kumar Sahu",
+    "jobTitle": "Senior Data Engineer",
+    "url": "https://nikuamit.github.io",
+    "sameAs": [
+      "https://www.linkedin.com/in/aks1993",
+      "https://github.com/nikuamit"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -123,21 +136,26 @@
     .tl-ul li{font-size:.9rem;color:#c7ccd6;line-height:1.65}
     .tl-ul li b{color:#f5f5f7;font-weight:700}
 
-    /* CODE */
+    /* CODE (single illustrative snippet, used inside a case-study card) */
     .code-wrap{border:1px solid #1f1f28;border-radius:12px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.4)}
-    .code-tabs-wrap{background:#0e0e15;padding:0 8px;border-bottom:1px solid #1f1f28}
-    .code-tabs{display:flex;flex-wrap:wrap}
-    .code-tab{font-size:.78rem;font-weight:600;padding:12px 16px;cursor:pointer;color:#6b7280;border:none;border-bottom:2px solid transparent;background:none;font-family:'Inter',Arial,sans-serif;transition:all .15s;margin-bottom:-1px}
-    .code-tab.active{color:#818cf8;border-bottom-color:#818cf8}
-    .code-tab:hover{color:#e5e7eb}
-    .code-panels{background:#0a0a0f}
-    .code-panel{display:none}
-    .code-panel.active{display:block}
     .code-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:#0e0e15;border-bottom:1px solid #1f1f28}
     .code-fname{font-size:.75rem;color:#6b7280;font-family:'JetBrains Mono',monospace}
     .code-badge{font-size:.68rem;font-weight:600;background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.35);padding:2px 8px;border-radius:4px}
     pre.cb{margin:0;padding:22px;overflow-x:auto;font-size:.77rem;line-height:1.85;font-family:'JetBrains Mono',monospace;color:#e6edf3}
     .kw{color:#ff7b72}.fn{color:#d2a8ff}.st{color:#a5d6ff}.cm{color:#6b7280;font-style:italic}.nm{color:#79c0ff}.dc{color:#ffa657}
+
+    /* CASE STUDIES */
+    .cs-card{background:#12121a;border:1.5px solid #1f1f28;border-radius:12px;margin-bottom:16px;overflow:hidden;transition:border-color .2s}
+    .cs-card:hover{border-color:#3730a3}
+    section.alt .cs-card{background:#16161f}
+    .cs-summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;font-size:.97rem;color:#f5f5f7;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .cs-summary::-webkit-details-marker{display:none}
+    .cs-summary::after{content:'+';color:#818cf8;font-size:1.2rem;font-weight:400;flex-shrink:0}
+    details[open] .cs-summary::after{content:'−'}
+    .cs-body{padding:0 24px 22px;display:flex;flex-direction:column;gap:10px}
+    .cs-body p{font-size:.9rem;color:#c7ccd6;line-height:1.7}
+    .cs-body b{color:#f5f5f7}
+    .cs-title{flex:1;min-width:0}
 
     /* PROJECTS */
     .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
@@ -228,7 +246,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#code">Code</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Freelance</a></li>
       <li><a href="Amit_Kumar_Sahu_Resume.pdf" download class="nav-dl">↓ Resume</a></li>
@@ -241,20 +260,20 @@
 <section id="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge"><span class="pulse"></span>Open to work — Senior/Lead Data Engineer · immediate joiner</div>
-      <h2 class="hero-h1">Senior Data Engineer<br>who builds pipelines<br><span class="accent">that actually scale</span></h2>
-      <p class="hero-lead">9+ years designing enterprise data lakes, lakehouse platforms, and semantic analytics layers — Eli Lilly's 200K+ clinical assets to Kenko AI's 500+ multi-tenant SaaS clients.</p>
+      <div class="hero-badge"><span class="pulse"></span>Open to work — Senior/Lead/Staff Data Engineer · immediate joiner</div>
+      <h2 class="hero-h1">Senior / Lead<br>Data Engineer<br><span class="accent">Lakehouse &amp; streaming platforms</span></h2>
+      <p class="hero-lead">Senior Data Engineer with 9+ years building enterprise-grade data lakes, lakehouse platforms and semantic analytics layers across pharma (Eli Lilly, 200K+ clinical assets) and SaaS (Kenko AI, 500+ multi-tenant clients). Consistent 40–60% improvements in pipeline efficiency, data quality and cost.</p>
       <p class="hero-stack"><b>python</b> · <b>pyspark</b> · <b>sql</b> · <b>aws</b> · <b>apache-iceberg</b> · <b>cube-cloud-ldm</b> · <b>airflow</b></p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Let's talk
-        </a>
-        <a href="Amit_Kumar_Sahu_Resume.pdf" download class="btn btn-secondary">
+        <a href="Amit_Kumar_Sahu_Resume.pdf" download class="btn btn-primary">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Resume
         </a>
         <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
+        <a href="#contact" class="btn btn-secondary">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact
+        </a>
       </div>
       <div class="hero-pills">
         <span class="hpill">Data Lakes</span>
@@ -284,7 +303,7 @@
     <div class="reveal"><div class="m-num" data-target="45" data-suffix="%" id="cnt-latency">0%</div><div class="m-lbl">Query latency cut<br>Kenko AI</div><div class="m-bar"></div></div>
     <div class="reveal"><div class="m-num" data-target="200" data-suffix="K+" id="cnt-assets">0</div><div class="m-lbl">Clinical assets catalogued<br>Eli Lilly</div><div class="m-bar"></div></div>
     <div class="reveal"><div class="m-num" data-target="98" data-suffix="%" id="cnt-sla">0%</div><div class="m-lbl">SLA compliance<br>achieved</div><div class="m-bar"></div></div>
-    <div class="reveal"><div class="m-num" data-target="10" data-suffix=" TB+" id="cnt-tb">0</div><div class="m-lbl">Data migrated<br>AspireNXT</div><div class="m-bar"></div></div>
+    <div class="reveal"><div class="m-num" data-target="500" data-suffix="+" id="cnt-clients">0</div><div class="m-lbl">Multi-tenant clients<br>Kenko AI</div><div class="m-bar"></div></div>
   </div>
 </div>
 
@@ -306,8 +325,7 @@
       <div class="meta-grid reveal">
         <div class="meta-card"><div class="meta-label">Location</div><div class="meta-val">Bengaluru, Karnataka, India</div></div>
         <div class="meta-card"><div class="meta-label">Open to</div><div class="meta-val">Remote · Hybrid · Freelance</div></div>
-        <div class="meta-card"><div class="meta-label">Email</div><div class="meta-val"><a href="mailto:nikuamit.sahu256@gmail.com">nikuamit.sahu256@gmail.com</a></div></div>
-        <div class="meta-card"><div class="meta-label">Phone</div><div class="meta-val"><a href="tel:+919916681930">+91 9916681930</a></div></div>
+        <div class="meta-card"><div class="meta-label">Contact</div><div class="meta-val"><a href="#contact">See contact section ↓</a></div></div>
         <div class="meta-card"><div class="meta-label">Degree</div><div class="meta-val">B.Tech CS&amp;E — VSSUT Burla</div></div>
         <div class="meta-card"><div class="meta-label">Achievement</div><div class="meta-val">ACM-ICPC World Semifinalist 2013</div></div>
         <div class="meta-card" style="grid-column:span 2"><div class="meta-label">Interests</div><div class="meta-val">Competitive programming · Chess · Tech blogs · Mentoring · Poetry</div></div>
@@ -323,12 +341,12 @@
     <h2 class="sec-title reveal">Core stack, built in production</h2>
     <p class="sec-sub reveal">Every tool here has been used in live, production-grade systems.</p>
     <div class="skills-cols">
-      <div class="sk-card reveal"><div class="sk-head">🐍 Primary Languages</div><div class="tags"><span class="t-blue">Python</span><span class="t-blue">PySpark</span><span class="t-blue">SQL</span><span class="t-teal">Bash</span></div></div>
-      <div class="sk-card reveal"><div class="sk-head">☁️ AWS Data Stack</div><div class="tags"><span class="t-blue">S3</span><span class="t-blue">Glue</span><span class="t-blue">DMS/CDC</span><span class="t-blue">Kinesis</span><span class="t-blue">Redshift</span><span class="t-blue">Athena</span><span class="t-blue">Lake Formation</span><span class="t-teal">Lambda</span><span class="t-teal">Step Functions</span><span class="t-teal">Bedrock</span></div></div>
-      <div class="sk-card reveal"><div class="sk-head">🏗️ Data Engineering</div><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">Delta Lake</span><span class="t-blue">Apache Airflow</span><span class="t-blue">DBT</span><span class="t-teal">Databricks</span></div></div>
-      <div class="sk-card reveal"><div class="sk-head">📊 Semantic Layer &amp; BI</div><div class="tags"><span class="t-blue">Cube Cloud LDM</span><span class="t-blue">Multi-tenant RLS</span><span class="t-blue">JWT Auth</span><span class="t-teal">GoodData</span><span class="t-teal">QuickSight</span></div></div>
-      <div class="sk-card reveal"><div class="sk-head">🗄️ Databases</div><div class="tags"><span class="t-blue">PostgreSQL</span><span class="t-blue">MySQL</span><span class="t-teal">Oracle</span><span class="t-teal">DynamoDB</span><span class="t-teal">Azure IoT Hub</span></div></div>
-      <div class="sk-card reveal"><div class="sk-head">⚙️ DevOps &amp; AI Tools</div><div class="tags"><span class="t-blue">Docker</span><span class="t-blue">Git</span><span class="t-blue">DevSecOps</span><span class="t-purple">Claude AI</span><span class="t-purple">Cursor</span><span class="t-purple">GitHub Copilot</span><span class="t-teal">Linux</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">🐍 Languages &amp; Databases</div><div class="tags"><span class="t-blue">Python</span><span class="t-blue">PySpark</span><span class="t-blue">SQL</span><span class="t-blue">Bash</span><span class="t-blue">PostgreSQL</span><span class="t-blue">MySQL</span><span class="t-blue">Oracle</span><span class="t-blue">DynamoDB</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">☁️ Cloud</div><div class="tags"><span class="t-blue">AWS S3</span><span class="t-blue">Glue</span><span class="t-blue">DMS</span><span class="t-blue">Lambda</span><span class="t-blue">Redshift</span><span class="t-blue">RDS</span><span class="t-blue">Athena</span><span class="t-blue">Kinesis</span><span class="t-blue">Step Functions</span><span class="t-blue">Lake Formation</span><span class="t-blue">Bedrock</span><span class="t-blue">Azure IoT Hub</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">🏗️ Data Engineering</div><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">Delta Lake</span><span class="t-blue">Databricks</span><span class="t-blue">Apache Airflow</span><span class="t-blue">dbt</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">📊 Semantic Layer &amp; BI</div><div class="tags"><span class="t-blue">Cube Cloud LDM</span><span class="t-blue">Cubes</span><span class="t-blue">Pre-aggregations</span><span class="t-blue">Multi-tenant RLS</span><span class="t-blue">JWT Auth</span><span class="t-blue">GoodData</span><span class="t-blue">QuickSight</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">🤖 AI &amp; Dev Tools</div><div class="tags"><span class="t-blue">Claude</span><span class="t-blue">ChatGPT</span><span class="t-blue">GitHub Copilot</span><span class="t-blue">Cursor</span><span class="t-blue">Windsurf</span><span class="t-blue">Docker</span><span class="t-blue">GitHub</span><span class="t-blue">Linux</span><span class="t-blue">VS Code</span></div></div>
+      <div class="sk-card reveal"><div class="sk-head">⚙️ Workflow</div><div class="tags"><span class="t-blue">Linear</span><span class="t-blue">Jira</span><span class="t-blue">Confluence</span><span class="t-blue">Agile Scrum</span><span class="t-blue">Git</span><span class="t-blue">DevSecOps</span></div></div>
     </div>
     <div class="bars reveal">
       <div><div class="bar-top"><span class="bar-label">Python &amp; PySpark</span><span class="bar-pct">90%</span></div><div class="bar-track"><div class="bar-fill" data-w="90"></div></div></div>
@@ -344,8 +362,8 @@
 <!-- EXPERIENCE -->
 <section id="experience" class="alt">
   <div class="wrap">
-    <p class="eyebrow">Experience &amp; Education</p>
-    <h2 class="sec-title reveal">9 years across pharma, SaaS, IoT &amp; enterprise</h2>
+    <p class="eyebrow">Experience</p>
+    <h2 class="sec-title reveal">9+ years across pharma, SaaS, IoT &amp; enterprise</h2>
     <p class="sec-sub reveal">Consistent delivery of production data platforms that cut costs, raise quality, and scale.</p>
     <div class="timeline">
       <div class="tl reveal"><div class="tl-dot"></div><div class="tl-body">
@@ -360,7 +378,7 @@
         </ul>
       </div></div>
       <div class="tl reveal"><div class="tl-dot gray"></div><div class="tl-body">
-        <p class="tl-period">May 2024 – Feb 2026</p><p class="tl-role">Planned career break</p>
+        <p class="tl-period">Jun 2024 – Jan 2026</p><p class="tl-role">Planned career break</p>
         <p class="tl-org">Bengaluru</p>
         <ul class="tl-ul">
           <li>Upskilling in lakehouse architecture — <b>Apache Iceberg</b>, <b>Delta Lake</b>.</li>
@@ -395,155 +413,110 @@
         <p class="tl-org">Infosys Limited · Client: Daimler AG · Bengaluru</p>
         <ul class="tl-ul"><li>ETL automation across 12+ projects — downtime −20%, manual effort −30%.</li></ul>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <p class="eyebrow">Education</p>
+    <h2 class="sec-title reveal">Academic background</h2>
+    <div class="timeline">
       <div class="tl reveal"><div class="tl-dot gray"></div><div class="tl-body">
         <p class="tl-period">2011 – 2015</p><p class="tl-role">B.Tech — Computer Science &amp; Engineering</p>
-        <p class="tl-org">VSSUT, Burla, Odisha</p>
-        <ul class="tl-ul"><li>Founded <b>ENIGMA</b> coding club · <b>ACM-ICPC World Semifinalist 2013</b></li></ul>
+        <p class="tl-org">Veer Surendra Sai University of Technology (VSSUT), Burla, Odisha</p>
+        <ul class="tl-ul">
+          <li>Founded <b>ENIGMA</b> coding club.</li>
+          <li><b>ACM-ICPC World Semifinalist 2013</b> — IIT Kharagpur Regionals, Asia.</li>
+        </ul>
       </div></div>
       <div class="tl reveal"><div class="tl-dot gray"></div><div class="tl-body">
-        <p class="tl-period">2003 – 2010</p><p class="tl-role">AISSCE &amp; AISSE</p>
+        <p class="tl-period">2010</p><p class="tl-role">AISSCE</p>
         <p class="tl-org">Jawahar Navodaya Vidyalaya, Sarang, Dhenkanal, Odisha</p>
       </div></div>
     </div>
   </div>
 </section>
 
-<!-- CODE -->
-<section id="code">
+<!-- CASE STUDIES -->
+<section id="case-studies" class="alt">
   <div class="wrap">
-    <p class="eyebrow">Code Samples</p>
-    <h2 class="sec-title reveal">Real Python &amp; PySpark from production</h2>
-    <p class="sec-sub reveal">Patterns from Kenko AI and Eli Lilly. Full source on GitHub.</p>
-    <div class="code-wrap reveal">
-      <div class="code-tabs-wrap">
-        <div class="code-tabs">
-          <button class="code-tab active" onclick="showTab('iceberg',this)">Iceberg Pipeline</button>
-          <button class="code-tab" onclick="showTab('dq',this)">DQ Engine</button>
-          <button class="code-tab" onclick="showTab('cdc',this)">DMS CDC</button>
-          <button class="code-tab" onclick="showTab('gold',this)">Gold Revenue Mart</button>
+    <p class="eyebrow">Case Studies</p>
+    <h2 class="sec-title reveal">Problem → Architecture → Role → Outcome</h2>
+    <p class="sec-sub reveal">Four projects, from a 500+ tenant SaaS lakehouse to a personal medallion-architecture build.</p>
+
+    <details class="cs-card reveal" open>
+      <summary class="cs-summary"><span class="cs-title">Kenko AI — Multi-tenant Lakehouse &amp; Cube Cloud Semantic Layer</span></summary>
+      <div class="cs-body">
+        <p><b>Problem.</b> 500+ fitness-studio clients needed fast, reliable analytics; reporting on the legacy stack was slow (SLA at 70%) and BI licensing costs were high.</p>
+        <p><b>Architecture.</b> AWS Data Lakehouse: DMS CDC → S3 Bronze → Apache Iceberg Silver (S3 Tables) → Athena Gold. Cube Cloud semantic layer — 18 cubes, 11 pre-aggregated views, 58 KPIs — with JWT-based multi-tenant row-level security for 500+ operators. 20-table Gold analytics layer replacing GoodData.</p>
+        <p><b>My role.</b> Senior Data Engineer — architected and built the lakehouse end-to-end and designed the Cube Cloud LDM.</p>
+        <p><b>Outcome.</b> Query latency <b>−45%</b>, SLA <b>70%→98%</b>, BI licensing costs <b>−35%</b>.</p>
+      </div>
+    </details>
+
+    <details class="cs-card reveal">
+      <summary class="cs-summary"><span class="cs-title">Eli Lilly — Clinical Data Migration &amp; Axon Data Catalog</span></summary>
+      <div class="cs-body">
+        <p><b>Problem.</b> 5+ TB of CTMS clinical trial data sat in a legacy IMPACT system, slowing onboarding across 6+ clinical trial projects, and 200K+ clinical assets had no searchable catalog.</p>
+        <p><b>Architecture.</b> PySpark/Airflow migration pipeline moving CTMS data from IMPACT to Veeva Vault; Axon Data Catalog indexing 200K+ clinical assets; 20+ standardised, reusable Data Products and DWS APIs shared across 5+ teams.</p>
+        <p><b>My role.</b> Engineer II, Software Configuration and Development — led the migration engineering and built the catalog and reusable Data Products.</p>
+        <p><b>Outcome.</b> Onboarding <b>60% faster</b> across 6+ trials, discoverability <b>+50%</b>, validation efficiency <b>+30%</b>, incident response time <b>−40%</b>.</p>
+      </div>
+    </details>
+
+    <details class="cs-card reveal">
+      <summary class="cs-summary"><span class="cs-title">Kenko AI — 9-Check Data Quality Framework</span></summary>
+      <div class="cs-body">
+        <p><b>Problem.</b> Growing multi-tenant data volume across 500+ clients risked silent data quality issues undermining trust in the Gold analytics layer.</p>
+        <p><b>Architecture.</b> A 9-check PySpark DQ framework with a quarantine path for failing records and SNS alerting, wired into the Bronze→Silver pipeline.</p>
+        <p><b>My role.</b> Designed and built the framework as part of the Kenko AI lakehouse build.</p>
+        <p><b>Outcome.</b> Data incidents <b>−60%</b>, data confidence <b>82%→97%</b>.</p>
+        <div class="code-wrap" style="margin-top:16px">
+          <div class="code-hdr"><span class="code-fname">dq/quality_engine.py</span><span class="code-badge">Python · PySpark (illustrative)</span></div>
+          <pre class="cb"><span class="cm"># One of 9 checks in the quarantine-and-alert DQ pipeline</span>
+<span class="kw">def</span> <span class="fn">run</span>(self, df, quarantine_path=None):
+    total = df.count(); bad_mask = F.lit(False)
+    <span class="kw">for</span> rule <span class="kw">in</span> self.rules:
+        fail_cond = self._build_condition(rule)
+        bad_mask = bad_mask | fail_cond
+    clean_df = df.filter(~bad_mask)
+    <span class="kw">if</span> quarantine_path:
+        df.filter(bad_mask).write.format(<span class="st">"delta"</span>) \
+            .mode(<span class="st">"append"</span>).save(quarantine_path)
+    <span class="kw">return</span> clean_df</pre>
         </div>
       </div>
-      <div class="code-panels">
-        <div class="code-panel active" id="panel-iceberg">
-          <div class="code-hdr"><span class="code-fname">processing/silver/bronze_to_iceberg.py</span><span class="code-badge">Python · PySpark</span></div>
-          <pre class="cb"><span class="cm"># Bronze → Silver: Apache Iceberg with schema evolution & dedup</span>
-<span class="kw">from</span> <span class="nm">pyspark.sql</span> <span class="kw">import</span> SparkSession
-<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
-<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
+    </details>
 
-<span class="kw">def</span> <span class="fn">bronze_to_silver_iceberg</span>(spark, bronze_path, silver_table, tenant_id, batch_date):
-    df = (spark.read.format(<span class="st">"delta"</span>).load(bronze_path)
-          .filter((F.col(<span class="st">"_batch_date"</span>) == batch_date) &amp; (F.col(<span class="st">"tenant_id"</span>) == tenant_id)))
-    w = Window.partitionBy(<span class="st">"event_id"</span>).orderBy(F.col(<span class="st">"kafka_ts"</span>).desc())
-    deduped = df.withColumn(<span class="st">"_rn"</span>, F.row_number().over(w)).filter(F.col(<span class="st">"_rn"</span>) == <span class="dc">1</span>).drop(<span class="st">"_rn"</span>)
-    silver_df = deduped.select(
-        <span class="st">"event_id"</span>, <span class="st">"tenant_id"</span>, <span class="st">"user_id"</span>, <span class="st">"event_type"</span>, <span class="st">"amount"</span>,
-        F.current_timestamp().alias(<span class="st">"_silver_ts"</span>), F.lit(batch_date).alias(<span class="st">"_batch_date"</span>))
-    (silver_df.writeTo(silver_table).option(<span class="st">"mergeSchema"</span>, <span class="st">"true"</span>)
-     .partitionedBy(<span class="st">"tenant_id"</span>, <span class="st">"_batch_date"</span>).createOrReplace())</pre>
-        </div>
-        <div class="code-panel" id="panel-dq">
-          <div class="code-hdr"><span class="code-fname">dq/quality_engine.py</span><span class="code-badge">Python · PySpark</span></div>
-          <pre class="cb"><span class="cm"># 9-rule DQ Engine — incidents −60%, confidence 82%→97% at Kenko AI</span>
-<span class="kw">from</span> <span class="nm">dataclasses</span> <span class="kw">import</span> dataclass
-<span class="kw">from</span> <span class="nm">enum</span> <span class="kw">import</span> Enum
-<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
-
-<span class="kw">class</span> <span class="fn">RuleType</span>(str, Enum):
-    NOT_NULL=<span class="st">"not_null"</span>; UNIQUE=<span class="st">"unique"</span>; RANGE=<span class="st">"range"</span>; REGEX=<span class="st">"regex"</span>
-    ACCEPTED_VALUES=<span class="st">"accepted_values"</span>; REFERENTIAL=<span class="st">"referential_integrity"</span>
-    FRESHNESS=<span class="st">"freshness"</span>; SCHEMA=<span class="st">"schema_check"</span>; SEMANTIC=<span class="st">"semantic"</span>
-
-@dataclass
-<span class="kw">class</span> <span class="fn">DQResult</span>:
-    rule_name: str; passed: bool; total_rows: int; failed_rows: int; failure_rate: float
-
-<span class="kw">class</span> <span class="fn">QualityEngine</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(self, rules, alert_threshold=<span class="dc">0.05</span>):
-        self.rules=rules; self.alert_threshold=alert_threshold
-
-    <span class="kw">def</span> <span class="fn">run</span>(self, df, quarantine_path=None):
-        total=df.count(); bad_mask=F.lit(False); results=[]
-        <span class="kw">for</span> rule <span class="kw">in</span> self.rules:
-            fail_cond=self._build_condition(rule)
-            failed=df.filter(fail_cond).count(); rate=failed/total <span class="kw">if</span> total <span class="kw">else</span> <span class="dc">0.0</span>
-            results.append(DQResult(rule.name, rate&lt;=self.alert_threshold, total, failed, round(rate,<span class="dc">4</span>)))
-            bad_mask=bad_mask|fail_cond
-        clean_df=df.filter(~bad_mask)
-        <span class="kw">if</span> quarantine_path: df.filter(bad_mask).write.format(<span class="st">"delta"</span>).mode(<span class="st">"append"</span>).save(quarantine_path)
-        <span class="kw">return</span> clean_df, results</pre>
-        </div>
-        <div class="code-panel" id="panel-cdc">
-          <div class="code-hdr"><span class="code-fname">ingestion/streaming/dms_cdc_to_bronze.py</span><span class="code-badge">Python · Structured Streaming</span></div>
-          <pre class="cb"><span class="cm"># AWS DMS CDC → Bronze Iceberg (real-time at Kenko AI)</span>
-<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
-<span class="kw">from</span> <span class="nm">pyspark.sql.types</span> <span class="kw">import</span> StructType, StringType, TimestampType
-
-CDC_SCHEMA = (StructType().add(<span class="st">"Op"</span>,StringType()).add(<span class="st">"tenant_id"</span>,StringType())
-              .add(<span class="st">"member_id"</span>,StringType()).add(<span class="st">"status"</span>,StringType()).add(<span class="st">"updated_at"</span>,TimestampType()))
-
-<span class="kw">def</span> <span class="fn">run_cdc_stream</span>(spark, s3_path, bronze_table):
-    raw = spark.readStream.format(<span class="st">"csv"</span>).schema(CDC_SCHEMA).option(<span class="st">"header"</span>,<span class="st">"true"</span>).load(s3_path)
-    bronze = raw.filter(F.col(<span class="st">"Op"</span>).isin([<span class="st">"I"</span>,<span class="st">"U"</span>])).select(
-        <span class="st">"tenant_id"</span>,<span class="st">"member_id"</span>,<span class="st">"status"</span>,
-        F.col(<span class="st">"updated_at"</span>).alias(<span class="st">"source_ts"</span>), F.current_timestamp().alias(<span class="st">"ingest_ts"</span>),
-        F.to_date(<span class="st">"updated_at"</span>).alias(<span class="st">"_date"</span>))
-    <span class="kw">def</span> <span class="fn">write_batch</span>(batch_df, _):
-        batch_df.writeTo(bronze_table).option(<span class="st">"mergeSchema"</span>,<span class="st">"true"</span>).append()
-    (bronze.writeStream.foreachBatch(write_batch)
-     .option(<span class="st">"checkpointLocation"</span>,<span class="st">f"s3://ckpts/{bronze_table}"</span>)
-     .trigger(processingTime=<span class="st">"60 seconds"</span>).start().awaitTermination())</pre>
-        </div>
-        <div class="code-panel" id="panel-gold">
-          <div class="code-hdr"><span class="code-fname">processing/gold/revenue_mart.py</span><span class="code-badge">Python · PySpark · SQL</span></div>
-          <pre class="cb"><span class="cm"># Gold: MoM Revenue Mart — replaced GoodData, licensing −35%</span>
-<span class="kw">import</span> <span class="nm">pyspark.sql.functions</span> <span class="kw">as</span> F
-<span class="kw">from</span> <span class="nm">pyspark.sql.window</span> <span class="kw">import</span> Window
-<span class="kw">from</span> <span class="nm">delta.tables</span> <span class="kw">import</span> DeltaTable
-
-<span class="kw">def</span> <span class="fn">build_revenue_mart</span>(spark, silver_path, gold_path, batch_date):
-    silver = spark.read.format(<span class="st">"delta"</span>).load(silver_path).filter(F.col(<span class="st">"_batch_date"</span>)==batch_date)
-    w = Window.partitionBy(<span class="st">"tenant_id"</span>).orderBy(<span class="st">"month"</span>)
-    revenue = (silver.groupBy(<span class="st">"tenant_id"</span>,<span class="st">"studio_id"</span>,F.date_trunc(<span class="st">"month"</span>,<span class="st">"payment_date"</span>).alias(<span class="st">"month"</span>))
-        .agg(F.sum(<span class="st">"amount"</span>).alias(<span class="st">"total_revenue"</span>),F.countDistinct(<span class="st">"member_id"</span>).alias(<span class="st">"paying_members"</span>))
-        .withColumn(<span class="st">"prev_revenue"</span>,F.lag(<span class="st">"total_revenue"</span>).over(w))
-        .withColumn(<span class="st">"mom_growth_pct"</span>,F.round((F.col(<span class="st">"total_revenue"</span>)-F.col(<span class="st">"prev_revenue"</span>))/F.nullif(F.col(<span class="st">"prev_revenue"</span>),F.lit(<span class="dc">0</span>))*<span class="dc">100</span>,<span class="dc">2</span>))
-        .withColumn(<span class="st">"_gold_ts"</span>,F.current_timestamp()))
-    <span class="kw">if</span> DeltaTable.isDeltaTable(spark,gold_path):
-        DeltaTable.forPath(spark,gold_path).alias(<span class="st">"t"</span>).merge(revenue.alias(<span class="st">"s"</span>),
-            <span class="st">"t.tenant_id=s.tenant_id AND t.studio_id=s.studio_id AND t.month=s.month"</span>
-        ).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()
-    <span class="kw">else</span>:
-        revenue.write.format(<span class="st">"delta"</span>).partitionBy(<span class="st">"tenant_id"</span>).save(gold_path)</pre>
-        </div>
+    <details class="cs-card reveal">
+      <summary class="cs-summary"><span class="cs-title">Astra Data Platform — Personal Lakehouse Project</span></summary>
+      <div class="cs-body">
+        <p><b>Problem.</b> Wanted a hands-on way to prove out lakehouse and data-quality patterns learned during a self-directed upskilling period, outside production constraints.</p>
+        <p><b>Architecture.</b> Bronze/Silver/Gold medallion architecture with Kafka streaming ingestion, a PySpark DQ engine with quarantine, SCD Type 2 dimensions, and Delta Lake storage.</p>
+        <p><b>My role.</b> Independent creator and maintainer — architecture, pipeline code, and CI/CD.</p>
+        <p><b>Outcome.</b> CI green, v0.1.0 released. <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener">github.com/nikuamit/astra-data-platform ↗</a></p>
       </div>
-    </div>
-    <div style="margin-top:14px;text-align:right">
-      <a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="btn btn-light" style="font-size:.82rem;padding:8px 18px">Full Astra repo on GitHub ↗</a>
-    </div>
+    </details>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="alt">
+<section id="projects">
   <div class="wrap">
     <p class="eyebrow">Projects</p>
-    <h2 class="sec-title reveal">Python &amp; data engineering in production code</h2>
-    <p class="sec-sub reveal">Real code, real patterns, runnable locally.</p>
+    <h2 class="sec-title reveal">Independent builds</h2>
+    <p class="sec-sub reveal">Personal projects built during a self-directed upskilling period.</p>
     <div class="proj-grid">
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PySpark · SQL</div><div class="proj-name">Astra Data Platform</div><div class="proj-desc">Bronze→Silver→Gold medallion lakehouse. Kafka streaming, 9-rule DQ engine, SCD Type 2, config-driven pipelines, local runner.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">PySpark</span><span class="t-teal">Kafka</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · SQL · AWS</div><div class="proj-name">Data Quality Framework</div><div class="proj-desc">9-check PySpark DQ engine — quarantine, SNS alerting, HTML reports. Incidents −60%, confidence 82%→97% at Kenko AI.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Python</span><span class="t-teal">Great Expectations</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#e38c00"></span>SQL · Cube Cloud LDM</div><div class="proj-name">Multi-tenant Semantic Layer</div><div class="proj-desc">18 cubes, 58 KPIs, JWT RLS for 500+ tenants. Replaced GoodData — licensing −35%, latency −45%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Cube Cloud</span><span class="t-teal">JWT RLS</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PySpark · Airflow</div><div class="proj-name">Clinical Data Migration</div><div class="proj-desc">5+ TB CTMS IMPACT → Veeva Vault at Eli Lilly. GxP compliant, Airflow-orchestrated. Onboarding +60% across 6+ trials.</div><div class="proj-footer"><div class="tags"><span class="t-blue">PySpark</span><span class="t-teal">Airflow</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PostgreSQL · MQTT</div><div class="proj-name">Span Park — IoT Smart Parking</div><div class="proj-desc">Real-time smart parking — Python, Raspberry Pi, Azure IoT Hub, MQTT. Search time −50%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Python</span><span class="t-teal">Azure IoT</span></div><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · Axon · PySpark</div><div class="proj-name">Axon Data Catalog</div><div class="proj-desc">Eli Lilly Enterprise Data Backbone — 200K+ clinical assets. Discoverability +50%, validation +30%.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Axon Catalog</span><span class="t-teal">PySpark</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">LinkedIn ↗</a></div></div>
-      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#f7df1e"></span>JavaScript · Vercel · Claude API</div><div class="proj-name">Amavya</div><div class="proj-desc">AI for every Indian in 22 languages — serverless AI backend on Vercel, keys kept server-side.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Vercel</span><span class="t-teal">Serverless</span></div><a href="https://amavya.vercel.app" target="_blank" rel="noopener" class="proj-link">Live ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#3572A5"></span>Python · PySpark · SQL</div><div class="proj-name">Astra Data Platform</div><div class="proj-desc">Bronze/Silver/Gold medallion, Kafka streaming, PySpark DQ engine with quarantine, SCD2, Delta Lake, CI green, v0.1.0 release.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Apache Iceberg</span><span class="t-blue">PySpark</span><span class="t-blue">Kafka</span></div><a href="https://github.com/nikuamit/astra-data-platform" target="_blank" rel="noopener" class="proj-link">GitHub ↗</a></div></div>
+      <div class="proj-card reveal"><div class="proj-lang"><span class="proj-dot" style="background:#f7df1e"></span>Vercel · Claude API</div><div class="proj-name">Amavya</div><div class="proj-desc">Founder-built AI assistant for 22 Indian languages.</div><div class="proj-footer"><div class="tags"><span class="t-blue">Vercel</span><span class="t-blue">Serverless</span></div><a href="https://amavya.vercel.app" target="_blank" rel="noopener" class="proj-link">Live ↗</a></div></div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
+<section id="services" class="alt">
   <div class="wrap">
     <p class="eyebrow">Freelance Services</p>
     <h2 class="sec-title reveal">What I can build for you</h2>
@@ -564,7 +537,7 @@ CDC_SCHEMA = (StructType().add(<span class="st">"Op"</span>,StringType()).add(<s
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="alt">
+<section id="contact">
   <div class="wrap">
     <p class="eyebrow">Contact</p>
     <h2 class="sec-title reveal">Let's build something together</h2>
@@ -573,7 +546,6 @@ CDC_SCHEMA = (StructType().add(<span class="st">"Op"</span>,StringType()).add(<s
       <div class="reveal">
         <div class="ci-list">
           <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div><div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:nikuamit.sahu256@gmail.com">nikuamit.sahu256@gmail.com</a></div></div></div>
-          <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.8 19.8 0 0 1 1.61 3.42 2 2 0 0 1 3.59 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.35a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg></div><div><div class="ci-label">Phone</div><div class="ci-val"><a href="tel:+919916681930">+91 99166 81930</a></div></div></div>
           <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="ci-label">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">linkedin.com/in/aks1993</a></div></div></div>
           <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="ci-label">Location</div><div class="ci-val">Bengaluru, Karnataka, India</div></div></div>
           <div class="ci"><div class="ci-ico"><svg width="18" height="18" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div><div class="ci-label">Resume</div><div class="ci-val"><a href="Amit_Kumar_Sahu_Resume.pdf" download>Download PDF ↓</a></div></div></div>
@@ -608,9 +580,10 @@ CDC_SCHEMA = (StructType().add(<span class="st">"Op"</span>,StringType()).add(<s
     <span class="foot-brand">Amit Kumar <span>Sahu</span></span>
     <div class="foot-links">
       <a href="https://www.linkedin.com/in/aks1993" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:nikuamit.sahu256@gmail.com">Email</a>
-      <a href="tel:+919916681930">Phone</a>
+      <a href="#contact">Contact</a>
       <a href="Amit_Kumar_Sahu_Resume.pdf" download>Resume ↓</a>
+      <!-- TODO(parent): update to Track C's actual production URL once known -->
+      <a href="https://nikuamit-portfolio.vercel.app" target="_blank" rel="noopener">Portfolio ↗</a>
     </div>
     <p class="foot-copy">© 2026 Amit Kumar Sahu · Senior Data Engineer · Bengaluru, India · Open to work &amp; freelance</p>
   </div>
@@ -672,13 +645,6 @@ const cntObs=new IntersectionObserver(es=>{
   });
 },{threshold:.5});
 document.querySelectorAll('.m-num[data-target]').forEach(el=>cntObs.observe(el));
-
-// Code tabs
-function showTab(name,el){
-  document.querySelectorAll('.code-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');el.classList.add('active');
-}
 
 // Mobile nav toggle
 const navToggle=document.getElementById('navToggle');
